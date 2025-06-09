@@ -124,9 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         const loadingIndicator = gridContainer.querySelector('.loading-indicator');
 
-        // Note: The check `TMDB_API_KEY === 'YOUR_TMDB_API_KEY'` is removed
-        // because you've hardcoded your actual key. If you revert to a placeholder, add it back.
-        if (!TMDB_API_KEY || TMDB_API_KEY === 'YOUR_TMDB_API_KEY_PLACEHOLDER') { // More robust check
+        if (!TMDB_API_KEY || TMDB_API_KEY === 'YOUR_TMDB_API_KEY_PLACEHOLDER') { 
              if (gridContainer) gridContainer.innerHTML = '<p class="error-message">TMDB API Key is missing or invalid in movies.js</p>';
              return;
         }
@@ -134,11 +132,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if(loadingIndicator) loadingIndicator.style.display = 'block';
 
         try {
-            // CORRECTED URL with '&' before region
             const response = await fetch(`${TMDB_BASE_URL}/movie/now_playing?api_key=${TMDB_API_KEY}&language=en-US&page=1®ion=IN`);
 
             if (!response.ok) {
-                const errorText = await response.text(); // Get more details from API error
+                const errorText = await response.text();
                 console.error("API Error Response:", response.status, errorText);
                 throw new Error(`HTTP error! status: ${response.status}. ${errorText}`);
             }
@@ -198,9 +195,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- MOVIE SHOWTIMES VIEW (Step 1 of new flow) ---
+    // --- MOVIE SHOWTIMES VIEW ---
     function renderMovieShowtimesView(movie) {
-        const mockDuration = "2 hr 1 min"; // TMDB doesn't provide runtime in /now_playing easily
+        const mockDuration = "2 hr 1 min";
         let dateScrollerHtml = '<div class="date-scroller">';
         for (let i = 0; i < 7; i++) {
             const date = new Date();
@@ -280,9 +277,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentBooking.date = e.currentTarget.dataset.date;
                 document.querySelectorAll('.date-item.active').forEach(active => active.classList.remove('active'));
                 e.currentTarget.classList.add('active');
-                // In a real app, you'd filter or re-fetch mockCinemasData based on the new date.
-                // For now, it just visually updates the active date.
-                console.log(`Date changed to: ${currentBooking.date}. Cinema showtimes would update here if backend connected.`);
             });
         });
 
@@ -293,26 +287,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentBooking.showtime = {
                     time: e.currentTarget.dataset.time,
                     screenType: e.currentTarget.dataset.screen,
-                    pricePerTicket: { PREMIUM: 180, KIDS: 120 } // Example categories
+                    pricePerTicket: { PREMIUM: 180, KIDS: 120 }
                 };
-                currentBooking.tickets = 10;
                 currentView = VIEW_STATES.SEAT_SELECTION;
                 renderPage();
             });
         });
     }
 
-    // --- SEAT SELECTION VIEW (Step 2 of new flow) ---
+    // --- SEAT SELECTION VIEW ---
     function renderSeatSelectionView(movie, cinema, showtime) {
         const seatCategories = [
             { name: 'PREMIUM', price: (showtime.pricePerTicket && showtime.pricePerTicket.PREMIUM) || 180, rows: ['R', 'Q', 'P', 'O', 'N', 'M'] },
             { name: 'KIDS', price: (showtime.pricePerTicket && showtime.pricePerTicket.KIDS) || 120, rows: ['B', 'A'] }
         ];
-        // ... (rest of the seat selection HTML generation and logic from your previous correct version) ...
-        // This part is quite long, so I'm truncating for brevity here.
-        // Ensure the full logic for seatMapHtml, event listeners for seats, ticketQtySelect, etc., is present.
 
-        // Example start of seatMapHtml (ensure you have the full version)
         let seatMapHtml = `<div class="seat-selection-page">
             <div class="seat-selection-header">
                 <button id="backToShowtimesBtnSeat" class="back-button">←</button>
@@ -320,17 +309,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h3>${movie.title}</h3>
                     <p>${new Date(currentBooking.date).toLocaleDateString('en-US', { weekday: 'short', day: 'numeric', month: 'short' })} | ${showtime.time} at ${cinema.name.split(',')[0]}</p>
                 </div>
-                <div class="ticket-count-selector">
-                     <label for="ticketQty">Tickets:</label>
-                     <select id="ticketQty">
-                        ${[1,2,3,4,5,6,7,8,9,10].map(n => `<option value="${n}" ${n === (currentBooking.tickets || 10) ? 'selected' : ''}>${n}</option>`).join('')}
-                     </select>
-                </div>
+                <div class="header-spacer"></div> <!-- Spacer to push title to center -->
             </div>
             <div class="seat-map-area">`;
 
-        // FULL SEAT MAP GENERATION LOGIC HERE (from your last working version)
-        // ...
         seatCategories.forEach(category => {
             seatMapHtml += `<div class="seat-category-section">
                                 <p class="seat-category-price">${category.name}: ₹${category.price}</p>`;
@@ -341,14 +323,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 let seatsToRenderLeft = 0;
                 let seatStartNumberLeft = 0;
 
-                if (['R', 'Q', 'P', 'O', 'N', 'M'].includes(rowLetter)) {
-                    seatsToRenderLeft = 10;
-                    seatStartNumberLeft = 10; // R10, R9...
-                } else if (['B', 'A'].includes(rowLetter)) {
-                    seatsToRenderLeft = 13;
-                    seatStartNumberLeft = 22; // B22, B21... or A26, A25...
-                    if (rowLetter === 'A') seatStartNumberLeft = 26;
-                }
+                if (['R', 'Q', 'P', 'O', 'N', 'M'].includes(rowLetter)) { seatsToRenderLeft = 10; seatStartNumberLeft = 10; }
+                else if (['B', 'A'].includes(rowLetter)) { seatsToRenderLeft = 13; seatStartNumberLeft = (rowLetter === 'A' ? 26 : 22); }
 
                 for (let i = 0; i < seatsToRenderLeft; i++) {
                     const seatNumDisplay = seatStartNumberLeft - i;
@@ -356,38 +332,26 @@ document.addEventListener('DOMContentLoaded', () => {
                     const isBooked = Math.random() < 0.15;
                     seatMapHtml += `<div class="seat ${isBooked ? 'booked' : 'available'}" data-seat-id="${seatId}" data-price="${category.price}" data-category="${category.name}">${seatNumDisplay}</div>`;
                 }
-                seatMapHtml += `</div>`; // End left group
+                seatMapHtml += `</div>`;
 
                 if (['R', 'Q', 'P', 'O', 'N', 'M'].includes(rowLetter)) {
                     seatMapHtml += `<div class="seats-group right">`;
-                    let seatsToRenderRight = 0;
-                    let seatStartNumberRight = 0;
-                    if (rowLetter === 'R') { seatsToRenderRight = 2; seatStartNumberRight = 2;} // R1,R2
-                    else if (rowLetter === 'Q') { seatsToRenderRight = 4; seatStartNumberRight = 4;} //Q4,Q3..
-                    else if (rowLetter === 'P') { seatsToRenderRight = 2; seatStartNumberRight = 2;}
-                    else if (rowLetter === 'O') { seatsToRenderRight = 2; seatStartNumberRight = 2;}
-                    else if (rowLetter === 'N') { seatsToRenderRight = 2; seatStartNumberRight = 2;}
-                    else if (rowLetter === 'M') { seatsToRenderRight = 2; seatStartNumberRight = 2;}
-
+                    let seatsToRenderRight = 2;
+                    let seatStartNumberRight = 2;
+                    if (rowLetter === 'Q') { seatsToRenderRight = 4; seatStartNumberRight = 4; }
 
                     for (let i = 0; i < seatsToRenderRight; i++) {
                         const seatNumDisplay = seatStartNumberRight - i;
                         const seatId = `${rowLetter}${seatNumDisplay}`;
                         const isBooked = Math.random() < 0.1;
-                        const isWheelchair = (rowLetter === 'Q' && (seatNumDisplay === 4 || seatNumDisplay === 3)); // Example
-                        const isNoSeat = (rowLetter === 'Q' && seatNumDisplay === 0 ); // Example for a gap
-
-                        if(isNoSeat) {
-                             seatMapHtml += `<div class="seat no-seat"></div>`;
-                        } else {
-                            seatMapHtml += `<div class="seat ${isBooked ? 'booked' : 'available'} ${isWheelchair ? 'wheelchair' : ''}" data-seat-id="${seatId}" data-price="${category.price}" data-category="${category.name}">${seatNumDisplay}</div>`;
-                        }
+                        const isWheelchair = (rowLetter === 'Q' && (seatNumDisplay === 4 || seatNumDisplay === 3));
+                        seatMapHtml += `<div class="seat ${isBooked ? 'booked' : 'available'} ${isWheelchair ? 'wheelchair' : ''}" data-seat-id="${seatId}" data-price="${category.price}" data-category="${category.name}">${isWheelchair ? '<img src="https://img.icons8.com/ios-filled/15/ffffff/wheelchair.png" alt="W"/>' : seatNumDisplay}</div>`;
                     }
-                    seatMapHtml += `</div>`; // End right group
+                    seatMapHtml += `</div>`;
                 }
-                seatMapHtml += `</div>`; // End seat-row-layout
+                seatMapHtml += `</div>`;
             });
-            seatMapHtml += `</div>`; // End seat-category-section
+            seatMapHtml += `</div>`;
         });
 
         seatMapHtml += `</div>
@@ -399,31 +363,34 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span class="legend-item"><span class="seat-indicator selected"></span> Selected</span>
                             <span class="legend-item"><span class="seat-indicator wheelchair-legend"><img src="https://img.icons8.com/ios-filled/15/000000/wheelchair.png" alt="wheelchair"/></span> Wheelchair</span>
                         </div>
-                        <button id="proceedToSummaryBtnNew" class="btn-primary-seat" disabled>Pay ₹0</button>
+                        <button id="proceedToSummaryBtn" class="btn-primary-seat" disabled>Select Seats</button>
                       </div>`;
         moviesPageMainContent.innerHTML = seatMapHtml;
-        currentBooking.selectedSeatsInfo = currentBooking.selectedSeatsInfo || []; // Ensure it's initialized
+        currentBooking.selectedSeatsInfo = currentBooking.selectedSeatsInfo || [];
 
-        const ticketQtySelect = document.getElementById('ticketQty');
-        const proceedBtn = document.getElementById('proceedToSummaryBtnNew');
+        const proceedBtn = document.getElementById('proceedToSummaryBtn');
 
         function updateTotalAndButton() {
-            const numTickets = parseInt(ticketQtySelect.value);
-            let totalPrice = 0;
-            currentBooking.selectedSeatsInfo.forEach(seat => totalPrice += seat.price);
+            const selectedSeatsCount = currentBooking.selectedSeatsInfo.length;
+            const totalPrice = currentBooking.selectedSeatsInfo.reduce((sum, seat) => sum + seat.price, 0);
 
-            proceedBtn.textContent = `Pay ₹${totalPrice.toFixed(2)}`;
-            proceedBtn.disabled = currentBooking.selectedSeatsInfo.length !== numTickets || numTickets === 0;
+            if (selectedSeatsCount > 0) {
+                proceedBtn.textContent = `Pay ₹${totalPrice.toFixed(2)}`;
+                proceedBtn.disabled = false;
+            } else {
+                proceedBtn.textContent = `Select Seats`;
+                proceedBtn.disabled = true;
+            }
         }
 
         document.querySelectorAll('.seat.available').forEach(seatEl => {
             seatEl.addEventListener('click', () => {
-                if (seatEl.classList.contains('no-seat') || seatEl.classList.contains('booked')) return;
+                if (seatEl.classList.contains('booked')) return;
 
                 const seatId = seatEl.dataset.seatId;
                 const price = parseFloat(seatEl.dataset.price);
                 const category = seatEl.dataset.category;
-                const maxSeats = parseInt(ticketQtySelect.value);
+                const maxSeats = 10; // Maximum 10 seats allowed per booking
                 const isSelected = currentBooking.selectedSeatsInfo.some(s => s.id === seatId);
 
                 if (isSelected) {
@@ -434,55 +401,43 @@ document.addEventListener('DOMContentLoaded', () => {
                         seatEl.classList.add('selected');
                         currentBooking.selectedSeatsInfo.push({ id: seatId, price: price, category: category });
                     } else {
-                        alert(`You can only select up to ${maxSeats} seat(s). Change ticket quantity if needed.`);
+                        alert(`You can select a maximum of ${maxSeats} seats.`);
                     }
                 }
                 updateTotalAndButton();
             });
         });
 
-        ticketQtySelect.addEventListener('change', () => {
-            currentBooking.tickets = parseInt(ticketQtySelect.value);
-            if (currentBooking.selectedSeatsInfo.length > currentBooking.tickets) {
-                while (currentBooking.selectedSeatsInfo.length > currentBooking.tickets) {
-                    const seatToDeselect = currentBooking.selectedSeatsInfo.shift();
-                    const seatEl = document.querySelector(`.seat[data-seat-id="${seatToDeselect.id}"]`);
-                    if (seatEl) seatEl.classList.remove('selected');
-                }
-            }
-            updateTotalAndButton();
-        });
-
         document.getElementById('backToShowtimesBtnSeat').addEventListener('click', () => {
+            currentBooking.selectedSeatsInfo = []; // Clear selected seats when going back
             currentView = VIEW_STATES.MOVIE_SHOWTIMES;
             renderPage();
         });
+
         proceedBtn.addEventListener('click', () => {
+            if (proceedBtn.disabled) return;
+            currentBooking.tickets = currentBooking.selectedSeatsInfo.length;
             currentBooking.totalAmount = currentBooking.selectedSeatsInfo.reduce((sum, seat) => sum + seat.price, 0);
             currentView = VIEW_STATES.BOOKING_SUMMARY;
             renderPage();
         });
-        updateTotalAndButton(); // Initial state
+
+        updateTotalAndButton();
     }
 
-
-    // --- BOOKING SUMMARY VIEW (Step 3 of new flow) ---
+    // --- BOOKING SUMMARY VIEW ---
     function renderBookingSummaryView() {
-        const movie = currentBooking.movie;
-        const cinema = currentBooking.cinema;
-        const showtime = currentBooking.showtime;
-        const seats = currentBooking.selectedSeatsInfo.map(s => s.id).join(', ');
-        const numTickets = currentBooking.tickets;
-        const orderAmount = currentBooking.totalAmount;
-        const taxesAndFees = orderAmount * 0.12; // Mock 12% tax
-        const toBePaid = orderAmount + taxesAndFees;
+        const { movie, cinema, showtime, selectedSeatsInfo, totalAmount } = currentBooking;
+        const numTickets = selectedSeatsInfo.length;
+        const taxesAndFees = totalAmount * 0.12;
+        const toBePaid = totalAmount + taxesAndFees;
 
         moviesPageMainContent.innerHTML = `
             <div class="booking-summary-page">
                 <div class="summary-header">
                     <button id="backToSeatsBtnSummary" class="back-button">←</button>
                     <h3>Review your booking</h3>
-                    <span></span> <!-- Spacer for centering title -->
+                    <span></span>
                 </div>
                 <div class="summary-content-wrapper">
                     <div class="booking-details-column">
@@ -496,33 +451,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                         <div class="summary-show-info">
                             <p><strong>Today, ${new Date(currentBooking.date).toLocaleDateString('en-US', {day: 'numeric', month: 'short'})}</strong> | ${showtime.time}</p>
-                            <p><strong>${numTickets} Tickets</strong> - ${currentBooking.selectedSeatsInfo.map(s => s.category + " - " + s.id).join(', ')}</p>
-                            <p class="total-ticket-price">₹${orderAmount.toFixed(2)}</p>
+                            <p><strong>${numTickets} Tickets</strong> - ${selectedSeatsInfo.map(s => s.category.slice(0,1) + " - " + s.id).join(', ')}</p>
+                            <p class="total-ticket-price">₹${totalAmount.toFixed(2)}</p>
                         </div>
                         <div class="cancellation-info">
                             <p><span class="icon">ℹ️</span> This theatre ${cinema.cancellation === 'Non-cancellable' ? 'doesn\'t allow' : 'allows'} cancellation</p>
                         </div>
-                        <div class="offers-section">
-                            <h4>Offers <a href="#" class="see-all">See all</a></h4>
-                            <div class="offer-item">
-                                <img src="https://via.placeholder.com/20x20/27AE60/FFFFFF?Text=%" alt="offer icon">
-                                <div>
-                                    <p>Flat ₹50 OFF</p>
-                                    <span>Save ₹50 with this code</span>
-                                </div>
-                                <button class="apply-btn">Apply</button>
-                            </div>
-                        </div>
-                         <div class="food-beverages-section">
-                            <h4>Food and beverages <a href="#" class="see-all">See all</a></h4>
-                            <!-- Add F&B items here if needed -->
-                        </div>
                     </div>
                     <div class="payment-summary-column">
                         <h4>Payment summary</h4>
-                        <div class="payment-line-item"><span>Order amount</span><span>₹${orderAmount.toFixed(2)}</span></div>
+                        <div class="payment-line-item"><span>Order amount</span><span>₹${totalAmount.toFixed(2)}</span></div>
                         <div class="payment-line-item">
-                            <span>Taxes & fees <span class="arrow-dropdown">▼</span></span>
+                            <span>Taxes & fees</span>
                             <span>₹${taxesAndFees.toFixed(2)}</span>
                         </div>
                         <hr>
@@ -530,16 +470,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span>To be paid</span>
                             <span>₹${toBePaid.toFixed(2)}</span>
                         </div>
-                        <h4>Your details <a href="#" class="edit-link">Edit</a></h4>
-                        <div class="user-details-summary">
-                            <p><span class="icon">📞</span> +91-9555XXXXXX</p>
-                            <p><span class="icon">📍</span> Delhi</p>
-                        </div>
-                        <div class="terms-conditions">
-                            <p><span class="icon">❓</span> Terms and conditions <span class="arrow-right">→</span></p>
-                        </div>
                         <div class="final-payment-action">
-                            <div class="total-payable-bottom">₹${toBePaid.toFixed(2)} TOTAL</div>
+                             <div class="total-payable-bottom">
+                                <span>TOTAL</span>
+                                <strong>₹${toBePaid.toFixed(2)}</strong>
+                            </div>
                             <button class="proceed-to-pay-btn">Proceed To Pay</button>
                         </div>
                     </div>
@@ -553,7 +488,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         document.querySelector('.proceed-to-pay-btn').addEventListener('click', () => {
-            alert('Proceeding to actual payment gateway (mocked). Booking successful!');
+            alert('Proceeding to actual payment gateway (this is a simulation). Your booking is successful!');
+            currentBooking = {};
             currentView = VIEW_STATES.MOVIE_GRID;
             renderPage();
         });
