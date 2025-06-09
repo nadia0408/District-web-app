@@ -499,6 +499,10 @@ nav ul li.active a[href="events.html"] { color: #b18d2f; font-weight: 600; borde
     .details-movie-poster { margin-bottom: var(--space-12); }
 }*/
 
+/* #################################################################### */
+/* #############   MOBILE RESPONSIVE STYLES (FINAL FIX)   ############# */
+/* #################################################################### */
+
 @media (max-width: 800px) {
 
     /* --- 1. GLOBAL & BODY STYLES --- */
@@ -510,50 +514,52 @@ nav ul li.active a[href="events.html"] { color: #b18d2f; font-weight: 600; borde
         padding-bottom: 76px; /* Space for the fixed bottom nav bar (60px height + 16px padding) */
         padding-left: 0;
         padding-right: 0;
-        background-color: transparent; /* Main content area is dark */
+        background-color: transparent !important; /* Ensure dark background */
+        min-height: 100vh;
     }
     
-    /* --- 2. THE NEW MOBILE TOP BAR --- */
+    /* --- 2. THE MOBILE TOP BAR --- */
     .header-container {
-        display: flex;
-        justify-content: flex-start; /* Align items to the left */
-        flex-direction: row; /* Ensure horizontal layout */
-        background-color: var(--color-brand-pure-white); /* White top bar */
-        position: fixed;
+        display: flex !important; /* Use !important to override other display rules */
+        justify-content: flex-start !important;
+        flex-direction: row !important;
+        background-color: var(--color-brand-pure-white) !important;
+        position: fixed !important;
         top: 0;
         left: 0;
         right: 0;
         height: 60px;
-        padding: 0 var(--space-16);
+        padding: 0 var(--space-16) !important;
         z-index: 950;
         border-bottom: 1px solid var(--color-grey-100);
     }
     .header-left {
+        display: flex !important;
         gap: var(--space-16);
     }
     .logo img {
-        height: 28px;
-        filter: none; /* IMPORTANT: Remove the invert filter for the white background */
-        margin-right: 0;
+        height: 28px !important;
+        filter: none !important; /* Remove the invert filter */
+        margin-right: 0 !important;
     }
     .location {
-        padding-left: var(--space-16);
-        border-left: 1px solid var(--color-grey-150);
-        margin-right: 0;
+        display: flex !important;
+        padding-left: var(--space-16) !important;
+        border-left: 1px solid var(--color-grey-150) !important;
+        margin-right: 0 !important;
     }
     .location-text .city, 
     .location-text .state {
-      color: var(--color-text-primary); /* Ensure location text is black */
+      color: var(--color-text-primary) !important;
     }
 
-    /* HIDE all unnecessary desktop header elements on mobile */
+    /* CRITICAL FIX: Force hide desktop nav and right-side elements */
     .header-left nav,
     .header-right {
-        display: none;
+        display: none !important;
     }
 
-    /* --- 3. THE NEW FIXED BOTTOM NAVIGATION BAR --- */
-    /* Add the .mobile-bottom-nav HTML to your pages before the </body> tag */
+    /* --- 3. THE FIXED BOTTOM NAVIGATION BAR --- */
     .mobile-bottom-nav {
         display: flex;
         justify-content: space-around;
@@ -592,8 +598,10 @@ nav ul li.active a[href="events.html"] { color: #b18d2f; font-weight: 600; borde
 
     /* --- 4. CONTENT STYLES FOR MOBILE --- */
     .content-section {
+        max-width: 100% !important; /* Allow content to be full-width */
         padding-left: var(--space-16);
         padding-right: var(--space-16);
+        box-sizing: border-box;
     }
     .content-section > h2 {
         color: var(--color-brand-pure-white);
@@ -608,17 +616,21 @@ nav ul li.active a[href="events.html"] { color: #b18d2f; font-weight: 600; borde
         height: 2px;
         margin-left: auto;
         margin-right: auto;
+        display: block; /* Ensure it's visible */
     }
     
     .horizontal-scroll-container {
-        padding-left: var(--space-16);
-        padding-right: var(--space-16);
-        margin-left: -16px; /* Bleed to the edge of the screen */
+        display: flex;
+        overflow-x: auto;
+        gap: var(--space-16);
+        padding: var(--space-8) var(--space-16) var(--space-16);
+        margin-left: -16px; 
         margin-right: -16px;
-        scrollbar-width: none; /* Hide scrollbar Firefox */
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
     }
     .horizontal-scroll-container::-webkit-scrollbar {
-        display: none; /* Hide scrollbar Chrome, Safari */
+        display: none;
     }
 
     .movie-card-item,
@@ -626,22 +638,26 @@ nav ul li.active a[href="events.html"] { color: #b18d2f; font-weight: 600; borde
         background-color: var(--color-brand-pure-white);
         box-shadow: none;
         border-radius: var(--space-12);
-        color: var(--color-text-primary);
     }
-    .movie-info,
-    .amusement-details {
-        color: var(--color-text-primary); /* Ensure text inside card is black */
+    .movie-info, .amusement-details {
+        color: var(--color-text-primary) !important;
     }
-    .movie-info h3, .movie-info p,
-    .amusement-title, .amusement-category, .amusement-location {
-        color: var(--color-text-primary);
+    .movie-info *, .amusement-details * {
+         color: var(--color-text-primary) !important;
     }
     .previous-hits-section .movie-card-item {
         flex: 0 0 160px;
     }
+    
+    /* Grid layout for movie list */
+    .movie-grid-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-16);
+    }
 
-    /* --- 5. HIDE THE DESKTOP FOOTER ON MOBILE --- */
+    /* --- 5. HIDE THE DESKTOP FOOTER --- */
     .footer-container {
-        display: none;
+        display: none !important;
     }
 }
