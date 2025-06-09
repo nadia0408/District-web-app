@@ -499,443 +499,149 @@ nav ul li.active a[href="events.html"] { color: #b18d2f; font-weight: 600; borde
     .details-movie-poster { margin-bottom: var(--space-12); }
 }*/
 
-/* =================================================================== */
-/* ============= MOBILE RESPONSIVE STYLES (Add this at the end) ======== */
-/* =================================================================== */
-
 @media (max-width: 800px) {
 
-    /* --- 1. GLOBAL MOBILE & DARK THEME STYLES --- */
-    /* To match the app-like screenshots, we'll switch to a dark theme on mobile */
+    /* --- 1. GLOBAL & BODY STYLES --- */
     body {
         background-color: var(--color-grey-900);
-        color: var(--color-grey-50);
-        font-size: 14px;
     }
-
-    /* Override CSS variables for dark mode on mobile */
-    :root {
-        --color-surface-primary: #131316;
-        --color-surface-secondary: #1e1e20;
-        --color-text-primary: #fafafa;
-        --color-text-secondary: #bfbfc4;
-        --color-text-quaternary: #8b8b93;
-        --color-border-subtle: rgba(255,255,255,.1);
-        --color-border-moderate: #2c2c2e;
-        --color-grey-50: #1e1e20; /* Invert grey for dark mode */
-        --color-blue-50: transparent; /* Remove blue bg from movie grid */
-    }
-
     .page-content-wrapper {
-        padding-top: var(--space-16);
+        padding-top: 76px;    /* Space for the fixed top bar (60px height + 16px padding) */
+        padding-bottom: 76px; /* Space for the fixed bottom nav bar (60px height + 16px padding) */
+        padding-left: 0;
+        padding-right: 0;
+        background-color: transparent; /* Main content area is dark */
+    }
+    
+    /* --- 2. THE NEW MOBILE TOP BAR --- */
+    .header-container {
+        display: flex;
+        justify-content: flex-start; /* Align items to the left */
+        flex-direction: row; /* Ensure horizontal layout */
+        background-color: var(--color-brand-pure-white); /* White top bar */
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        padding: 0 var(--space-16);
+        z-index: 950;
+        border-bottom: 1px solid var(--color-grey-100);
+    }
+    .header-left {
+        gap: var(--space-16);
+    }
+    .logo img {
+        height: 28px;
+        filter: none; /* IMPORTANT: Remove the invert filter for the white background */
+        margin-right: 0;
+    }
+    .location {
+        padding-left: var(--space-16);
+        border-left: 1px solid var(--color-grey-150);
+        margin-right: 0;
+    }
+    .location-text .city, 
+    .location-text .state {
+      color: var(--color-text-primary); /* Ensure location text is black */
+    }
+
+    /* HIDE all unnecessary desktop header elements on mobile */
+    .header-left nav,
+    .header-right {
+        display: none;
+    }
+
+    /* --- 3. THE NEW FIXED BOTTOM NAVIGATION BAR --- */
+    /* Add the .mobile-bottom-nav HTML to your pages before the </body> tag */
+    .mobile-bottom-nav {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        background-color: var(--color-grey-800);
+        border-top: 1px solid var(--color-grey-700);
+        z-index: 1000;
+    }
+    .mobile-bottom-nav .nav-link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-grey-400);
+        text-decoration: none;
+        flex-grow: 1;
+        height: 100%;
+        gap: 2px;
+    }
+    .mobile-bottom-nav .nav-link svg {
+        width: 24px;
+        height: 24px;
+    }
+    .mobile-bottom-nav .nav-link span {
+        font-size: 10px;
+        font-weight: 500;
+    }
+    .mobile-bottom-nav .nav-link.active {
+        color: var(--color-brand-district-pink);
+    }
+
+    /* --- 4. CONTENT STYLES FOR MOBILE --- */
+    .content-section {
         padding-left: var(--space-16);
         padding-right: var(--space-16);
     }
-    
     .content-section > h2 {
-        color: var(--color-text-primary);
+        color: var(--color-brand-pure-white);
         font-size: var(--font-size-lg);
-        font-weight: 500;
+        text-align: center;
+        margin-bottom: var(--space-16);
         padding-left: 0;
     }
     .content-section > h2::after {
-        display: none;
-    }
-
-
-    /* --- 2. MOBILE HEADER & APP-STYLE NAVIGATION --- */
-    /* This transforms the header and nav into the layout from your screenshots */
-    .header-container {
-        flex-direction: column;
-        align-items: stretch; /* Make children full-width */
-        gap: var(--space-12);
-        padding: var(--space-12) var(--space-16);
-        background-color: var(--color-grey-900);
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-    }
-
-    /* Hide desktop elements */
-    .logo, .header-right {
-        display: none;
-    }
-
-    /* Show and re-style the top bar (Location + Mobile Profile Icon) */
-    .header-left {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
+        background-color: var(--color-brand-district-purple);
+        width: 50px;
+        height: 2px;
+        margin-left: auto;
+        margin-right: auto;
     }
     
-    .location {
-        display: flex;
-        padding-left: 0;
-        margin-right: 0;
-        border-left: none;
-    }
-    .location-text .state::after {
-        content: ' ▾'; /* Add a dropdown arrow */
-        margin-left: 4px;
-    }
-    
-    /* We add a mobile-only profile icon since the original is hidden */
-    .header-left::after {
-        content: '';
-        display: block;
-        width: 36px;
-        height: 36px;
-        background-color: var(--color-grey-700);
-        border-radius: 50%;
-        cursor: pointer;
-    }
-
-    /* Re-style the search bar for mobile */
-    .search-bar {
-        order: 2; /* Position it below the location bar */
-        display: flex;
-        width: 100%;
-        background-color: var(--color-grey-800);
-        margin-right: 0;
-        padding: var(--space-12);
-        box-sizing: border-box;
-    }
-    .search-bar input { color: var(--color-text-primary); }
-    .search-bar input::placeholder { color: var(--color-grey-400); }
-    
-    /* Transform the desktop nav into the mobile Icon Tab Bar */
-    .header-left nav {
-        order: 3; /* Position it at the bottom of the header */
-        width: 100%;
-        border-top: 1px solid var(--color-border-moderate);
-        padding-top: var(--space-12);
-        margin-top: var(--space-4);
-    }
-    .header-left nav ul {
-        display: flex;
-        justify-content: space-around;
-        width: 100%;
-    }
-    .header-left nav ul li { margin-right: 0; }
-    .header-left nav ul li a {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 4px;
-        color: var(--color-grey-300);
-        font-size: var(--font-size-xs);
-        padding: 0;
-        border-bottom: 3px solid transparent; /* For the active state */
-        padding-bottom: var(--space-8);
-        font-weight: var(--font-medium);
-    }
-
-    /* Add icons using a pseudo-element */
-    .header-left nav ul li a::before {
-        font-family: 'Arial', sans-serif; /* Use a common font that has basic emoji */
-        font-size: 22px;
-        line-height: 1;
-        height: 22px; /* Set fixed height for alignment */
-    }
-    .header-left nav ul li a[href="index.html"]::before { content: '✨'; }
-    .header-left nav ul li a[href="dining.html"]::before { content: '🍴'; }
-    .header-left nav ul li a[href="events.html"]::before { content: '🎸'; }
-    .header-left nav ul li a[href="movies.html"]::before { content: '🎬'; }
-    .header-left nav ul li a[href="activities.html"]::before { content: '🤸'; }
-
-    /* Style for the active nav item */
-    .header-left nav ul li.active a {
-        color: var(--color-brand-pure-white);
-        border-bottom-color: var(--color-brand-pure-white);
-    }
-    .header-left nav ul li.active a[href="index.html"],
-    .header-left nav ul li.active a[href="dining.html"],
-    .header-left nav ul li.active a[href="events.html"],
-    .header-left nav ul li.active a[href="movies.html"],
-    .header-left nav ul li.active a[href="activities.html"] {
-        border-bottom-color: var(--color-brand-pure-white);
-    }
-
-    /* --- 3. PAGE-SPECIFIC LAYOUTS --- */
-    
-    /* 'FOR YOU' PAGE: Blockbuster card */
-    .for-you-page .horizontal-scroll-container .amusement-card-item:first-child {
-        flex: 0 0 100%;
-        box-shadow: none;
-        background: transparent;
-    }
-    .for-you-page .amusement-card-item:first-child .amusement-details {
-        padding: var(--space-12) 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    .for-you-page .amusement-card-item:first-child .amusement-details::after {
-        content: 'Book tickets';
-        background-color: var(--color-grey-700);
-        color: var(--color-text-primary);
-        padding: var(--space-8) var(--space-16);
-        border-radius: var(--space-8);
-        font-size: var(--font-size-sm);
-    }
-
-    /* 'MOVIES' PAGE: 2-Column Grid */
-    .now-showing-section h2 {
-        color: var(--color-text-primary);
-        font-size: var(--font-size-base);
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-    .movie-grid-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--space-16);
-    }
-    .movie-card-item {
-        background-color: transparent;
-        box-shadow: none;
-        border-radius: var(--space-8);
-    }
-    .movie-poster-container {
-        border-radius: var(--space-8);
-        overflow: hidden;
-    }
-    .movie-info { padding: var(--space-8) 0; }
-
-    /* Filters on Movies page */
-    .filters-bar {
-        overflow-x: auto;
-        white-space: nowrap;
-        padding-bottom: var(--space-8);
-        scrollbar-width: none; /* Firefox */
-    }
-    .filters-bar::-webkit-scrollbar { display: none; } /* Chrome, Safari */
-    
-    .filter-btn {
-        background-color: var(--color-grey-800);
-        border: 1px solid var(--color-grey-600);
-        color: var(--color-grey-100);
-        flex-shrink: 0;
-    }
-
-    /* MOVIE BOOKING FLOW */
-    .movie-details-header, .summary-content-wrapper {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-    .seat-selection-header { flex-direction: column; align-items: flex-start; gap: var(--space-8); }
-    .seat { width: 28px; height: 28px; font-size: 9px;}
-    
-    /* --- 4. FOOTER --- */
-    .footer-container {
-        background-color: var(--color-grey-900);
-        border-top: 1px solid var(--color-border-moderate);
-        padding: var(--space-24) var(--space-16);
-    }
-    .footer-content {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: var(--space-20);
-    }
-    /* Hide QR code on mobile as it's not practical */
-    .footer-qr { display: none; }
-}
-
-/* Finer adjustments for very small screens */
-@media (max-width: 370px) {
-    .header-left nav ul li a {
-        font-size: 9px; /* Make nav text even smaller */
-    }
-    .header-left nav ul li a::before {
-        font-size: 20px; /* Make nav icon smaller */
-        height: 20px;
-    }
-    .seat { width: 24px; height: 24px; }
-}
-/* ======================================================================== */
-/* ============= MOBILE STYLES FOR DINING, EVENTS & ACTIVITIES ============ */
-/* ======================================================================== */
-
-@media (max-width: 800px) {
-
-    /* --- 5. DINING PAGE --- */
-    /* The dining banner is already simple, we just need to give it some space and style */
-    .dining-page-simple {
-        padding: var(--space-16) 0; /* Add vertical space */
-    }
-    .dining-banner-image {
-        border-radius: var(--space-12); /* Add rounded corners to match the mobile aesthetic */
-        max-height: 250px;
-        object-fit: cover;
-    }
-
-
-    /* --- 6. EVENTS PAGE --- */
-    /* We need to transform the complex 3D carousel into a simple horizontal scroller */
-
-    /* Reset the carousel container */
-    .event-carousel-section {
-        height: auto; /* Let content define the height */
-        margin-bottom: var(--space-24);
-        overflow: visible; /* Allow scrollbar to show if needed */
-    }
-    .carousel-viewport {
-        height: auto;
-        perspective: none; /* IMPORTANT: Disable 3D perspective */
-        padding: 0;
-        overflow: hidden; /* Hide overflow on the viewport */
-    }
-
-    /* This is the main change: make the slide container a flexbox scroller */
-    .carousel-container {
-        display: flex;
-        position: static; /* Reset from absolute */
-        transform: none !important; /* Override JS inline styles */
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scroll-snap-type: x mandatory;
-        gap: var(--space-16);
-        padding: var(--space-8) var(--space-16);
-        /* Negative margin to make it bleed to the edges of the screen */
-        margin-left: -16px; 
+    .horizontal-scroll-container {
+        padding-left: var(--space-16);
+        padding-right: var(--space-16);
+        margin-left: -16px; /* Bleed to the edge of the screen */
         margin-right: -16px;
+        scrollbar-width: none; /* Hide scrollbar Firefox */
     }
-    .carousel-container::-webkit-scrollbar { display: none; } /* Hide scrollbar */
-    .carousel-container { scrollbar-width: none; } /* Firefox */
+    .horizontal-scroll-container::-webkit-scrollbar {
+        display: none; /* Hide scrollbar Chrome, Safari */
+    }
 
-    /* Reset individual slide styles */
-    .carousel-slide {
-        position: static;
-        flex: 0 0 75%; /* Each slide takes up 75% of the screen width */
-        width: 75%;
-        height: auto;
-        min-width: 0;
-        opacity: 1 !important;
-        transform: none !important;
-        z-index: 1 !important;
+    .movie-card-item,
+    .amusement-card-item {
+        background-color: var(--color-brand-pure-white);
         box-shadow: none;
         border-radius: var(--space-12);
-        background-color: var(--color-surface-secondary);
-        scroll-snap-align: center; /* Snap slides to the center */
+        color: var(--color-text-primary);
     }
-    .carousel-slide img {
-        border-radius: var(--space-12);
+    .movie-info,
+    .amusement-details {
+        color: var(--color-text-primary); /* Ensure text inside card is black */
     }
-    
-    /* Hide desktop-only carousel elements */
-    .carousel-control, 
-    .carousel-dots, 
-    .active-slide-info {
+    .movie-info h3, .movie-info p,
+    .amusement-title, .amusement-category, .amusement-location {
+        color: var(--color-text-primary);
+    }
+    .previous-hits-section .movie-card-item {
+        flex: 0 0 160px;
+    }
+
+    /* --- 5. HIDE THE DESKTOP FOOTER ON MOBILE --- */
+    .footer-container {
         display: none;
     }
-    
-    /* Artist section styling for mobile */
-    .artists-section h2 {
-        text-align: left;
-        color: var(--color-text-primary);
-        font-size: var(--font-size-lg);
-        font-weight: 500;
-        letter-spacing: 0;
-        text-transform: none;
-    }
-    .artist-cards-container {
-        justify-content: flex-start; /* Align to the left */
-        gap: var(--space-20);
-    }
-    .artist-card img {
-        width: 80px;
-        height: 80px;
-        box-shadow: none;
-        border: 2px solid var(--color-grey-800);
-    }
-
-    /* Event grid card styling */
-    .all-events-section h2 {
-        text-align: left;
-        color: var(--color-text-primary);
-        font-size: var(--font-size-lg);
-        font-weight: 500;
-        letter-spacing: 0;
-        text-transform: none;
-    }
-    .event-grid-container {
-        grid-template-columns: 1fr; /* Make it a single column list on mobile */
-        gap: var(--space-16);
-    }
-    .event-card-item {
-        background-color: var(--color-surface-secondary);
-        box-shadow: none;
-        display: flex; /* Create a horizontal card layout */
-        align-items: center;
-        gap: var(--space-16);
-    }
-    .event-image-container {
-        flex: 0 0 100px; /* Fixed width for the image */
-    }
-    .event-image-container img {
-        width: 100px;
-        height: 100px;
-    }
-    .event-details { padding: 0 var(--space-16) 0 0; }
-    .event-title { font-size: var(--font-size-base); }
-
-
-    /* --- 7. ACTIVITIES PAGE --- */
-
-    /* The grid is already responsive, we'll just switch to 1 column for consistency */
-    .activity-grid-container {
-        grid-template-columns: 1fr; /* Single column layout */
-        gap: var(--space-16);
-    }
-    .activity-card-item {
-        background-color: var(--color-surface-secondary);
-        box-shadow: none;
-        transition: none;
-        display: flex; /* Horizontal card layout */
-        align-items: center;
-        gap: var(--space-16);
-    }
-    .activity-card-item:hover {
-        transform: none;
-    }
-    .activity-image-container {
-        flex: 0 0 120px; /* Fixed image width */
-        height: 120px;
-    }
-    .activity-image-container img {
-        height: 100%;
-    }
-    .activity-details {
-        padding: var(--space-12);
-    }
-    .activity-title {
-        font-size: var(--font-size-base);
-    }
-
-    /* Single Activity Detail View */
-    .single-activity-detail-view {
-        padding: 0;
-        background-color: transparent;
-    }
-    .single-activity-header {
-        flex-direction: column; /* Stack image and info box vertically */
-        gap: var(--space-16);
-    }
-    .single-activity-banner {
-        width: 100%;
-        max-width: 100%; /* Override desktop max-width */
-        border-radius: var(--space-12);
-    }
-    .single-activity-info-box {
-        background-color: var(--color-surface-secondary);
-    }
-    .single-activity-info-box h2 {
-        font-size: var(--font-size-xl);
-    }
-    .single-activity-content h3 {
-        border-color: var(--color-border-subtle);
-    }
 }
-
