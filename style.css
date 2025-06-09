@@ -505,65 +505,66 @@ nav ul li.active a[href="events.html"] { color: #b18d2f; font-weight: 600; borde
 
 @media (max-width: 800px) {
 
-    /* --- 1. GLOBAL & BODY STYLES --- */
+    /* --- 1. GLOBAL OVERRIDES --- */
     body {
         background-color: var(--color-grey-900);
     }
     .page-content-wrapper {
-        padding-top: 76px;    /* Space for the fixed top bar (60px height + 16px padding) */
-        padding-bottom: 76px; /* Space for the fixed bottom nav bar (60px height + 16px padding) */
+        padding-top: 76px;    /* 60px header + 16px space */
+        padding-bottom: 76px; /* 60px footer + 16px space */
         padding-left: 0;
         padding-right: 0;
-        background-color: transparent !important; /* Ensure dark background */
+        background-color: transparent !important; /* Ensure content area is dark */
         min-height: 100vh;
     }
     
-    /* --- 2. THE MOBILE TOP BAR --- */
+    /* --- 2. MOBILE TOP BAR --- */
     .header-container {
-        display: flex !important; /* Use !important to override other display rules */
-        justify-content: flex-start !important;
-        flex-direction: row !important;
-        background-color: var(--color-brand-pure-white) !important;
-        position: fixed !important;
+        position: fixed;
         top: 0;
         left: 0;
         right: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
         height: 60px;
-        padding: 0 var(--space-16) !important;
-        z-index: 950;
+        padding: 0 var(--space-16);
+        background-color: var(--color-brand-pure-white);
         border-bottom: 1px solid var(--color-grey-100);
+        z-index: 950;
     }
     .header-left {
-        display: flex !important;
         gap: var(--space-16);
     }
     .logo img {
-        height: 28px !important;
-        filter: none !important; /* Remove the invert filter */
-        margin-right: 0 !important;
+        height: 28px;
+        filter: none;
+        margin-right: 0;
     }
     .location {
-        display: flex !important;
-        padding-left: var(--space-16) !important;
-        border-left: 1px solid var(--color-grey-150) !important;
-        margin-right: 0 !important;
+        display: flex;
+        padding-left: var(--space-16);
+        border-left: 1px solid var(--color-grey-150);
+        margin-right: 0;
+        gap: var(--space-8);
     }
-    .location-text .city, 
+    .location-icon,
+    .location-text .city,
     .location-text .state {
-      color: var(--color-text-primary) !important;
+      color: var(--color-text-primary);
     }
 
-    /* CRITICAL FIX: Force hide desktop nav and right-side elements */
+    /* HIDE desktop elements */
     .header-left nav,
     .header-right {
-        display: none !important;
+        display: none;
     }
 
-    /* --- 3. THE FIXED BOTTOM NAVIGATION BAR --- */
+    /* --- 3. MOBILE BOTTOM NAVIGATION --- */
+    /* Remember to add the <nav class="mobile-bottom-nav"> HTML to your pages */
     .mobile-bottom-nav {
         display: flex;
-        justify-content: space-around;
-        align-items: center;
         position: fixed;
         bottom: 0;
         left: 0;
@@ -596,9 +597,9 @@ nav ul li.active a[href="events.html"] { color: #b18d2f; font-weight: 600; borde
         color: var(--color-brand-district-pink);
     }
 
-    /* --- 4. CONTENT STYLES FOR MOBILE --- */
+    /* --- 4. MOBILE CONTENT STYLING --- */
     .content-section {
-        max-width: 100% !important; /* Allow content to be full-width */
+        max-width: 100%;
         padding-left: var(--space-16);
         padding-right: var(--space-16);
         box-sizing: border-box;
@@ -609,6 +610,8 @@ nav ul li.active a[href="events.html"] { color: #b18d2f; font-weight: 600; borde
         text-align: center;
         margin-bottom: var(--space-16);
         padding-left: 0;
+        text-transform: uppercase;
+        position: relative;
     }
     .content-section > h2::after {
         background-color: var(--color-brand-district-purple);
@@ -616,48 +619,46 @@ nav ul li.active a[href="events.html"] { color: #b18d2f; font-weight: 600; borde
         height: 2px;
         margin-left: auto;
         margin-right: auto;
-        display: block; /* Ensure it's visible */
+        display: block;
+        position: static; /* Reset from desktop */
+        margin-top: var(--space-8);
     }
     
     .horizontal-scroll-container {
-        display: flex;
-        overflow-x: auto;
-        gap: var(--space-16);
         padding: var(--space-8) var(--space-16) var(--space-16);
         margin-left: -16px; 
         margin-right: -16px;
         scrollbar-width: none;
-        -webkit-overflow-scrolling: touch;
     }
     .horizontal-scroll-container::-webkit-scrollbar {
         display: none;
     }
 
+    /* Universal card style for mobile */
     .movie-card-item,
     .amusement-card-item {
         background-color: var(--color-brand-pure-white);
         box-shadow: none;
         border-radius: var(--space-12);
     }
-    .movie-info, .amusement-details {
-        color: var(--color-text-primary) !important;
-    }
+    .movie-info, .amusement-details,
     .movie-info *, .amusement-details * {
-         color: var(--color-text-primary) !important;
+         color: var(--color-text-primary);
     }
     .previous-hits-section .movie-card-item {
         flex: 0 0 160px;
     }
+    .amusement-card-item {
+        flex: 0 0 240px;
+    }
     
-    /* Grid layout for movie list */
     .movie-grid-container {
-        display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: var(--space-16);
     }
 
-    /* --- 5. HIDE THE DESKTOP FOOTER --- */
+    /* --- 5. HIDE DESKTOP FOOTER --- */
     .footer-container {
-        display: none !important;
+        display: none;
     }
 }
