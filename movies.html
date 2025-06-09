@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>District by Zomato - Movies</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header-container">
+        <div class="header-left">
+             <div class="logo">
+                <img src="logo.svg" alt="District by Zomato">
+            </div>
+            <div class="location">
+                <svg class="location-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <div class="location-text">
+                    <span class="city">Mumbai</span>
+                    <span class="state">Maharashtra</span>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">For you</a></li>
+                    <li><a href="dining.html">Dining</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li class="active"><a href="movies.html">Movies</a></li>
+                    <li><a href="activities.html">Activities</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="header-right">
+            <div class="search-bar"><svg class="search-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg><input type="text" placeholder="Search for events, movies and restaurants"></div>
+            <div class="profile-icon"></div>
+        </div>
+    </header>
+
+    <main class="page-content-wrapper movies-page" id="moviesPageMainContent">
+        <!-- Content will be rendered here by movies.js -->
+    </main>
+    <footer class="footer-container">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="logo.svg" alt="District by Zomato">
+            </div>
+            <nav class="footer-links">
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Contact Us</a>
+                <a href="#">List your events</a>
+            </nav>
+            <div class="footer-qr">
+                <img src="images/qr_code.svg" alt="QR Code"> <!-- Ensure this image exists -->
+            </div>
+        </div>
+    </footer>
+
+    <script src="movies.js"></script>
+</body>
+</html>
