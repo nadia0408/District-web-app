@@ -119,7 +119,7 @@ body {
     height: 40px; 
     margin-right: var(--space-20); 
     display: block;
-    filter: invert(1);
+    filter : invert(1);
 }
 .location { display: flex; align-items: center; margin-right: var(--space-24); border-left: 1px solid var(--color-grey-150); padding-left: var(--space-20); }
 .location-icon { width: 20px; height: 20px; margin-right: var(--space-8); color: var(--color-grey-500); }
@@ -137,37 +137,6 @@ body {
 .profile-icon { width: 40px; height: 40px; background-color: var(--color-grey-800); border-radius: 50%; }
 
 .footer-container { background-color: var(--color-grey-800); color: var(--color-grey-50); padding: var(--space-32) var(--space-20); margin-top: var(--space-40); }
-.footer-content { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; flex-wrap: wrap; }
-.footer-logo img { height: 35px; filter: brightness(0) invert(1); }
-.footer-links { display: flex; gap: var(--space-20); flex-wrap: wrap; justify-content: center; margin: var(--space-12) 0; }
-.footer-links a { color: var(--color-grey-100); text-decoration: none; font-size: 0.9em; }
-.footer-links a:hover { text-decoration: underline; }
-.footer-qr img { width: 80px; height: 80px; background-color: white; padding: var(--space-4); border-radius: var(--space-4); }
-
-/* ======== CONTENT SECTIONS (Desktop) ======== */
-/* --- For You Page --- */
-.page-content-wrapper.for-you-page { background-color: var(--color-purple-50); }
-.welcome-section { text-align: center; padding: var(--space-20) var(--space-16) var(--space-32); }
-.welcome-section h2 { font-size: var(--font-size-2xl); color: var(--color-text-primary); font-weight: var(--font-semibold); margin-bottom: var(--space-8); display: inline-block; position: relative; }
-.welcome-section h2::after { content: ''; display: block; width: 60%; height: 3px; background-color: var(--color-brand-district-purple); margin: var(--space-8) auto var(--space-16); }
-.welcome-section p { font-size: var(--font-size-lg); color: var(--color-text-secondary); line-height: 1.6; max-width: 600px; margin-left: auto; margin-right: auto; }
-.content-section { max-width: 1200px; margin-left: auto; margin-right: auto; padding: var(--space-20) var(--space-16); }
-.content-section > h2 { font-size: var(--font-size-xl); color: var(--color-text-primary); margin-bottom: var(--space-8); display: inline-block; position: relative; text-transform: uppercase; font-weight: var(--font-semibold); padding-left: var(--space-4); }
-.content-section > h2::after { content: ''; display: block; width: 80px; height: 3px; background-color: var(--color-brand-district-purple); margin-top: var(--space-8); margin-bottom: var(--space-20); }
-.horizontal-scroll-container { display: flex; overflow-x: auto; gap: var(--space-16); padding: var(--space-8) var(--space-4) var(--space-16); -webkit-overflow-scrolling: touch; }
-.horizontal-scroll-container::-webkit-scrollbar { height: 6px; }
-.horizontal-scroll-container::-webkit-scrollbar-thumb { background: var(--color-grey-200); border-radius: 3px; }
-.amusement-card-item { flex: 0 0 280px; background-color: var(--color-surface-primary); border-radius: var(--space-12); overflow: hidden; box-shadow: 0 4px 12px var(--color-black-alpha-16); transition: transform 0.2s ease-in-out; }
-.amusement-card-item:hover { transform: translateY(-4px); }
-.amusement-image-container { width: 100%; height: 160px; background-color: var(--color-grey-100); }
-.amusement-image-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.amusement-details { padding: var(--space-12); }
-.amusement-title { font-size: var(--font-size-lg); color: var(--color-text-primary); font-weight: var(--font-semibold); margin-bottom: var(--space-8); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.amusement-category, .amusement-location { font-size: var(--font-size-sm); color: var(--color-text-quaternary); margin-bottom: var(--space-4); }
-
-/* --- Dining Page --- */
-.page-content-wrapper.dining-page-simple { padding: 0; max-width: 1200px; margin: 0 auto; }
-.dining-banner-image { width: 100%; height: auto; display: block; }
 
 /* ======== GENERIC 2D SCALING CAROUSEL (For Events & Activities) ======== */
 .event-carousel-section,
@@ -189,35 +158,31 @@ body {
     justify-content: center;
     transition: transform 0.5s ease-in-out; 
     position: relative; 
-    min-height: 450px; /* Adjusted height */
+    min-height: 450px;
 }
 .carousel-slide { 
-    width: 320px; /* A slightly smaller, more standard width */
-    aspect-ratio: 3 / 4; /* Enforce a consistent portrait aspect ratio */
+    width: 320px;
+    aspect-ratio: 3 / 4.2; /* CORRECT FIX: Enforce a consistent portrait aspect ratio */
     flex-shrink: 0;
     margin: 0 var(--space-8); 
     border-radius: var(--space-12); 
     overflow: hidden; 
     position: relative; 
     transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out, z-index 0.5s; 
-    transform: scale(0.85) translateX(0); /* Base transform */
+    transform: scale(0.85);
     opacity: 0.7; 
     z-index: 1; 
     box-shadow: 0 4px 15px var(--color-black-alpha-24); 
+    background-color: var(--color-grey-100);
 }
 .carousel-slide.active { 
-    transform: scale(1) translateX(0); /* Center active slide */
+    transform: scale(1);
     opacity: 1; 
     z-index: 2; 
     box-shadow: 0 8px 25px var(--color-black-alpha-32); 
 }
-.carousel-slide.prev { 
-    transform: scale(0.85) translateX(-80%); /* Move to the left */
-    opacity: 0.7; 
-    z-index: 1; 
-}
-.carousel-slide.next { 
-    transform: scale(0.85) translateX(80%); /* Move to the right */
+.carousel-slide.prev, .carousel-slide.next { 
+    transform: scale(0.85);
     opacity: 0.7; 
     z-index: 1; 
 }
@@ -230,7 +195,7 @@ body {
     width: 100%; 
     height: 100%;
     display: block; 
-    object-fit: cover; /* This will crop images to fit the portrait frame */
+    object-fit: cover; /* This will crop all images cleanly to fit the frame */
 }
 .carousel-caption { 
     position: absolute; 
@@ -240,172 +205,40 @@ body {
     background: linear-gradient(to top, var(--color-black-alpha-64, rgba(0,0,0,0.64)) 0%, transparent 100%); 
     color: var(--color-brand-pure-white); 
     padding: var(--space-16); 
-    border-bottom-left-radius: var(--space-12); 
-    border-bottom-right-radius: var(--space-12); 
-}
-.carousel-tag { 
-    background-color: var(--color-brand-district-purple); 
-    color: var(--color-brand-pure-white); 
-    padding: var(--space-4) var(--space-8); 
-    border-radius: var(--space-4); 
-    font-size: var(--font-size-sm); 
-    position: absolute; 
-    top: var(--space-12); 
-    left: var(--space-12); 
-    font-weight: var(--font-semibold); 
-}
-.carousel-caption h3 { 
-    margin: var(--space-4) 0; 
-    font-size: var(--font-size-lg); 
-    font-weight: var(--font-semibold); 
-}
-.carousel-caption p { 
-    margin: 0; 
-    font-size: var(--font-size-sm); 
-    opacity: 0.9; 
 }
 .carousel-control { 
     position: absolute; 
     top: 50%; 
     transform: translateY(-50%); 
-    background-color: var(--color-white-alpha-64, rgba(255,255,255,0.64)); 
+    background-color: var(--color-white-alpha-64); 
     color: var(--color-grey-800); 
     border: none; 
-    padding: var(--space-8) var(--space-12); 
     border-radius: 50%; 
     cursor: pointer; 
     z-index: 3; 
-    font-size: var(--font-size-xl); 
     width: 40px; 
     height: 40px; 
     display: flex; 
     align-items: center; 
     justify-content: center; 
 }
-.carousel-control:hover { 
-    background-color: var(--color-brand-pure-white); 
-}
-.carousel-control.prev { 
-    left: var(--space-16); 
-}
-.carousel-control.next { 
-    right: var(--space-16); 
-}
-.carousel-dots { 
-    text-align: center; 
-    margin-top: var(--space-20); 
-}
-.dot { 
-    height: var(--space-8); 
-    width: var(--space-8); 
-    margin: 0 var(--space-4); 
-    background-color: var(--color-grey-200); 
-    border-radius: 50%; 
-    display: inline-block; 
-    cursor: pointer; 
-    transition: background-color 0.3s ease, width 0.3s ease; 
-}
-.dot.active { 
-    background-color: var(--color-brand-district-purple); 
-    width: var(--space-20); 
-}
+.carousel-control.prev { left: var(--space-16); }
+.carousel-control.next { right: var(--space-16); }
+.carousel-dots { text-align: center; margin-top: var(--space-20); }
+.dot { height: var(--space-8); width: var(--space-8); margin: 0 var(--space-4); background-color: var(--color-grey-200); border-radius: 50%; display: inline-block; cursor: pointer; transition: all 0.3s ease; }
+.dot.active { background-color: var(--color-brand-district-purple); width: var(--space-20); }
 
-/* --- Events & Activities Page Specifics --- */
+/* ======== PAGE SPECIFIC STYLES (Desktop) ======== */
 .page-content-wrapper.events-page { background-color: #fbfaf5; }
 .page-content-wrapper.activities-page { background-color: var(--color-pink-50); }
-
-.artists-section h2, .all-events-section h2 { 
-    font-size: 1rem; 
-    color: #4F4F4F; 
-    letter-spacing: 1px; 
-    margin-bottom: 2rem; 
-    text-align: center; 
-}
-.artist-cards-container { 
-    display: flex; 
-    justify-content: center; 
-    gap: 1.5rem; 
-    flex-wrap: wrap; 
-}
-.artist-card { text-align: center; }
-.artist-card img { 
-    width: 120px; 
-    height: 120px; 
-    border-radius: 50%; 
-    object-fit: cover; 
-    margin-bottom: 0.5rem; 
-    border: 3px solid white; 
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
-}
-.event-grid-container, 
-.activity-grid-container { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-    gap: 1.5rem; 
-}
-.event-card-item,
-.activity-card-item { 
-    background: #fff; 
-    border-radius: 12px; 
-    overflow: hidden; 
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
-    transition: transform 0.2s ease-in-out; 
-    cursor: pointer;
-}
-.event-card-item:hover,
-.activity-card-item:hover { 
-    transform: translateY(-5px); 
-}
-.event-image-container img,
-.activity-image-container img { 
-    width: 100%; 
-    height: 180px; 
-    object-fit: cover; 
-    display: block;
-}
-.event-details,
-.activity-details { padding: 1rem; }
-.event-date,
-.activity-date { 
-    font-size: 0.9rem; 
-    color: var(--color-brand-district-pink); 
-    font-weight: 500; 
-}
-.event-title,
-.activity-title { 
-    font-size: 1.2rem; 
-    margin: 0.5rem 0; 
-    color: var(--color-text-primary);
-}
-.event-location,
-.activity-location { 
-    color: #4F4F4F; 
-    margin-bottom: 0.75rem; 
-}
-.event-price,
-.activity-price { font-weight: bold; }
-
-
-/* --- Movies Page (Grid) --- */
 .movies-page { background-color: var(--color-surface-primary); }
-.now-showing-section { max-width: 1200px; margin: var(--space-20) auto; padding: 0 var(--space-20); background-color: var(--color-blue-50); }
-.now-showing-section h2 { font-size: var(--font-size-lg); color: var(--color-text-secondary); margin-bottom: var(--space-20); font-weight: var(--font-semibold); text-transform: uppercase; padding-top: var(--space-12); }
-.movie-grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: var(--space-20); padding-bottom: var(--space-20); }
-.movie-card-item { background-color: var(--color-surface-primary); border-radius: var(--space-12); overflow: hidden; box-shadow: 0 4px 10px var(--color-black-alpha-16); transition: transform 0.2s ease-in-out; cursor: pointer; }
-.movie-card-item:hover { transform: translateY(-5px); }
-.movie-poster-container { width: 100%; aspect-ratio: 2 / 3; background-color: var(--color-grey-100); }
-.movie-poster-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.movie-info { padding: var(--space-12); }
-.movie-info h3 { font-size: var(--font-size-base); color: var(--color-text-primary); font-weight: var(--font-semibold); margin: 0 0 var(--space-4) 0; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.movie-info p { font-size: var(--font-size-sm); color: var(--color-text-quaternary); margin: 0; }
 
-/* ======== MOVIE BOOKING FLOW (Desktop) ======== */
-/* Other styles for booking flow remain the same... */
+.movie-grid-container, .event-grid-container, .activity-grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+.movie-card-item, .event-card-item, .activity-card-item { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); transition: transform 0.2s ease-in-out; cursor: pointer;}
+.movie-card-item:hover, .event-card-item:hover, .activity-card-item:hover { transform: translateY(-5px); }
 
 /* ======== ACTIVE NAV LINKS (Desktop) ======== */
-.header-left nav ul li.active a { /* Generic active style for all links */
-    font-weight: var(--font-bold);
-}
+.header-left nav ul li.active a { font-weight: var(--font-bold); }
 .header-left nav ul li.active a[href="index.html"] { color: var(--color-brand-district-pink); border-bottom: 2px solid var(--color-brand-district-pink); }
 .header-left nav ul li.active a[href="dining.html"] { color: var(--color-brand-district-pink); border-bottom: 2px solid var(--color-brand-district-pink); }
 .header-left nav ul li.active a[href="events.html"] { color: var(--color-brand-district-yellow); border-bottom: 2px solid var(--color-brand-district-yellow); }
@@ -421,212 +254,114 @@ body {
 
     /* --- 1. GLOBAL & LAYOUT OVERRIDES --- */
     body {
-        background-color: var(--color-grey-900); /* Main dark background */
-        color: var(--color-grey-100); /* Default text to light */
+        background-color: var(--color-grey-900);
+        color: var(--color-grey-100);
     }
 
     .page-content-wrapper {
-        padding-top: 115px; /* New height for the taller header */
+        padding-top: 115px;
         padding-bottom: var(--space-20);
-        background-color: transparent !important; /* Let body background show */
-        min-height: 100vh;
-        box-sizing: border-box;
+        background-color: transparent !important;
     }
     
     /* --- 2. MOBILE HEADER & NAVIGATION --- */
     .header-container {
         position: fixed;
-        height: auto; /* Allow height to be determined by content */
-        flex-wrap: wrap; /* Allow items to wrap to a new line */
-        padding: var(--space-12) var(--space-16) 0; /* Adjust padding for the new layout */
-        background-color: var(--color-grey-900); /* Dark header */
+        height: auto;
+        flex-wrap: wrap;
+        padding: var(--space-12) var(--space-16) 0;
+        background-color: var(--color-grey-900);
         border-bottom: 1px solid var(--color-grey-700);
     }
     
     .header-left, .header-right {
-        width: 100%; /* Make left and right sections take full width initially */
         display: flex;
-        justify-content: space-between;
         align-items: center;
         margin-right: 0;
     }
 
-    .header-left {
-        order: 1; /* Top row part 1 */
-        width: auto; /* Allow it to shrink to fit content */
-        margin-bottom: var(--space-12);
-    }
-    .header-right {
-        order: 2; /* Top row part 2 */
-        width: auto; /* Allow it to shrink to fit content */
-        margin-bottom: var(--space-12);
-    }
+    .header-left { order: 1; width: auto; }
+    .header-right { order: 2; width: 100%; justify-content: flex-end; } /* Search bar container */
+    .logo img { height: 28px; filter: brightness(0) invert(1); margin-right: 0; }
+    .location, .profile-icon { display: none; }
     
-    .logo img {
-        height: 28px;
-        filter: brightness(0) invert(1); /* Make logo white */
-        margin-right: 0;
+    .search-bar { 
+        width: 100%; 
+        margin: var(--space-12) 0;
+        background-color: var(--color-grey-800);
     }
-    
-    /* Hide location and profile icon on mobile to save space */
-    .location, .profile-icon {
-        display: none;
-    }
-    
-    .search-bar {
-        width: 100%;
-        margin-right: 0;
-    }
-    .search-bar input {
-        width: 100%;
-        color: var(--color-brand-pure-white);
-    }
-    .search-bar input::placeholder {
-        color: var(--color-grey-400);
-    }
+    .search-bar input { width: 100%; color: var(--color-brand-pure-white); }
+    .search-icon { color: var(--color-grey-400); }
 
     /* --- SCROLLABLE NAVIGATION MENU --- */
-    .header-left nav {
-        display: block; /* Ensure nav is visible */
-        order: 3; /* Force nav to be the third element (bottom row) */
+    nav {
+        order: 3;
         width: 100%;
         border-top: 1px solid var(--color-grey-700);
     }
-
-    .header-left nav ul {
+    nav ul {
         display: flex;
         overflow-x: auto;
-        -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
-        scrollbar-width: none; /* Hide scrollbar for Firefox */
-        padding: 0;
-        margin: 0;
-        justify-content: flex-start; /* Align tabs to the left */
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 0; margin: 0;
     }
-
-    .header-left nav ul::-webkit-scrollbar {
-        display: none; /* Hide scrollbar for Chrome, Safari */
-    }
-
-    .header-left nav ul li {
-        flex-shrink: 0; /* Prevent links from shrinking */
-        margin: 0;
-    }
-
-    .header-left nav ul li a {
-        display: block;
-        white-space: nowrap; /* Prevent text from wrapping */
-        padding: var(--space-12) var(--space-16);
-        color: var(--color-grey-300);
-        border-bottom: 3px solid transparent; /* Placeholder for active indicator */
-    }
-
-    .header-left nav ul li.active a {
-        color: var(--color-brand-pure-white);
-        font-weight: var(--font-semibold);
-    }
-    /* Keep the desktop active link colors for mobile */
-    .header-left nav ul li.active a[href="index.html"],
-    .header-left nav ul li.active a[href="dining.html"] {
-        border-bottom-color: var(--color-brand-district-pink);
-    }
-     .header-left nav ul li.active a[href="events.html"] {
-        border-bottom-color: var(--color-brand-district-yellow);
-    }
-     .header-left nav ul li.active a[href="activities.html"] {
-        border-bottom-color: var(--color-pink-500);
-    }
-    .header-left nav ul li.active a[href="movies.html"] {
-        border-bottom-color: var(--color-blue-500);
-    }
-
-
-    /* --- HIDE DESKTOP FOOTER --- */
-    .footer-container {
-        display: none;
-    }
+    nav ul::-webkit-scrollbar { display: none; }
+    nav ul li { flex-shrink: 0; margin: 0; }
+    nav ul li a { display: block; white-space: nowrap; padding: var(--space-12) var(--space-16); color: var(--color-grey-300); border-bottom: 3px solid transparent; }
+    nav ul li.active a { color: var(--color-brand-pure-white); font-weight: var(--font-semibold); }
+    nav ul li.active a[href="index.html"], nav ul li.active a[href="dining.html"] { border-bottom-color: var(--color-brand-district-pink); }
+    nav ul li.active a[href="events.html"] { border-bottom-color: var(--color-brand-district-yellow); }
+    nav ul li.active a[href="activities.html"] { border-bottom-color: var(--color-pink-500); }
+    nav ul li.active a[href="movies.html"] { border-bottom-color: var(--color-blue-500); }
+    .footer-container { display: none; }
 
     /* --- 4. MOBILE CONTENT & CARD STYLING --- */
-    .content-section {
-        max-width: 100%;
-        padding: var(--space-20) var(--space-16);
-        box-sizing: border-box;
+    .content-section { padding: var(--space-20) var(--space-16); }
+    .content-section > h2 { color: var(--color-brand-pure-white); font-size: var(--font-size-lg); text-align: left; }
+    .content-section > h2::after { background-color: var(--color-brand-district-purple); width: 50px; height: 2px; margin-left: 0; display: block; position: static; margin-top: var(--space-8); }
+    .horizontal-scroll-container { margin: 0 -16px; padding: var(--space-8) var(--space-16) var(--space-16); scrollbar-width: none; }
+    .horizontal-scroll-container::-webkit-scrollbar { display: none; }
+    .movie-card-item, .amusement-card-item, .event-card-item, .activity-card-item { background-color: transparent; box-shadow: none; border: none; }
+    .movie-grid-container, .activity-grid-container, .event-grid-container { grid-template-columns: repeat(2, 1fr); gap: var(--space-16); }
+    .carousel-control { background-color: var(--color-grey-800); color: var(--color-grey-100); }
+
+    /* --- 5. MOBILE MOVIE BOOKING FLOW --- */
+    .movie-showtimes-page, .seat-selection-page, .booking-summary-page {
+        padding: var(--space-16);
+        background-color: transparent;
     }
-    .content-section > h2 {
-        color: var(--color-brand-pure-white);
-        font-size: var(--font-size-lg);
-        text-align: left;
-        margin-bottom: var(--space-16);
-        padding-left: 0;
-        position: relative;
-    }
-    .content-section > h2::after {
-        background-color: var(--color-brand-district-purple);
-        width: 50px;
-        height: 2px;
-        margin-left: 0;
-        display: block;
-        position: static;
-        margin-top: var(--space-8);
-    }
+    .back-button { color: var(--color-grey-100); }
     
-    .horizontal-scroll-container {
-        margin: 0 -16px; /* Extend to screen edges */
-        padding: var(--space-8) var(--space-16) var(--space-16);
-        scrollbar-width: none;
-    }
-    .horizontal-scroll-container::-webkit-scrollbar {
-        display: none;
-    }
+    /* Showtimes View */
+    .movie-details-header { flex-direction: column; align-items: center; text-align: center; gap: var(--space-16); }
+    .details-movie-info h1 { color: var(--color-brand-pure-white); }
+    .details-movie-info p { color: var(--color-grey-300); }
+    .date-scroller { padding-bottom: var(--space-4); margin-bottom: var(--space-16); }
+    .date-item { background-color: var(--color-grey-800); border-color: var(--color-grey-700); color: var(--color-grey-200); }
+    .date-item.active { background-color: var(--color-brand-pure-white); color: var(--color-grey-900); border-color: var(--color-brand-pure-white); }
+    .date-item.active * { color: var(--color-grey-800); }
+    .filters-bar { gap: var(--space-8); flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+    .filters-bar::-webkit-scrollbar { display: none; }
+    .filter-btn { background-color: var(--color-grey-800); border-color: var(--color-grey-600); color: var(--color-grey-100); flex-shrink: 0;}
+    .availability-legend { color: var(--color-grey-300); justify-content: flex-start; flex-wrap: wrap; }
+    .cinema-listing { border-top-color: var(--color-grey-700); }
+    .cinema-info h4 { color: var(--color-brand-pure-white); }
+    .cinema-meta { color: var(--color-grey-400); }
+    .showtime-slot-btn { background-color: transparent; border: 1px solid var(--color-grey-600); color: var(--color-grey-100); }
+    .showtime-screen { color: var(--color-grey-400); }
 
-    /* Universal DARK card style for mobile */
-    .movie-card-item, .amusement-card-item, .event-card-item, .activity-card-item {
-        background-color: transparent; /* Card background is transparent */
-        box-shadow: none;
-        border-radius: var(--space-12);
-        color: var(--color-brand-pure-white);
-        border: none;
-    }
-    .movie-poster-container,
-    .amusement-image-container,
-    .event-image-container,
-    .activity-image-container {
-        border-radius: var(--space-12);
-        overflow: hidden;
-    }
-    .movie-info, .amusement-details, .event-details, .activity-details {
-        color: var(--color-brand-pure-white);
-        padding: var(--space-8) 0;
-    }
-    .movie-info *, .amusement-details *, .event-details *, .activity-details * {
-        color: inherit;
-    }
-    .movie-info p, .amusement-category, .amusement-location, .event-location, .activity-location, .event-price, .activity-price {
-        color: var(--color-grey-300);
-    }
-    .event-date, .activity-date {
-        color: var(--color-brand-district-pink);
-    }
-
-    .previous-hits-section .movie-card-item { flex: 0 0 160px; }
-    .amusement-card-item { flex: 0 0 240px; }
-    
-    .movie-grid-container, .activity-grid-container, .event-grid-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--space-16);
-    }
-
-    /* --- MOBILE CAROUSEL OVERRIDES --- */
-    .event-carousel-section,
-    .activity-carousel-section {
-        margin-top: 0;
-        margin-bottom: var(--space-20);
-    }
-    .carousel-control {
-        background-color: var(--color-grey-800);
-        color: var(--color-grey-100);
-        box-shadow: 0 2px 5px rgba(0,0,0,0.4);
-    }
-    .carousel-control:hover {
-        background-color: var(--color-grey-700);
-    }
+    /* Seat Selection View */
+    .seat-selection-header { border-bottom-color: var(--color-grey-700); flex-direction: column; align-items: flex-start; gap: var(--space-8); }
+    .seat-selection-header h3, .seat-selection-header p { color: var(--color-grey-100); }
+    .ticket-count-selector select { background-color: var(--color-grey-800); color: var(--color-grey-100); border-color: var(--color-grey-600); }
+    .seat-category-price, .row-identifier, .screen-indicator-text { color: var(--color-grey-300); }
+    .seat-map-area { padding: var(--space-4); }
+    .seat-row-layout { gap: var(--space-12); }
+    .seat { background-color: var(--color-grey-700); border-color: var(--color-grey-600); color: var(--color-grey-300); width: 28px; height: 28px; }
+    .seat.selected { background-color: var(--color-brand-district-purple); border-color: var(--color-brand-district-purple); color: var(--color-brand-pure-white); }
+    .seat.booked { background-color: var(--color-grey-500); border-color: var(--color-grey-500); }
+    .seat-legend.modern { flex-wrap: wrap; gap: var(--space-12); justify-content: flex-start; }
+    .btn-primary-seat { background-color: var(--color-brand-district-purple); }
+    .btn-primary-seat:disabled { background-color: var(--color-grey-600); color: var(--color-grey-400); }
 }
