@@ -3,14 +3,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const mockCarouselActivities = [
         {
             id: 'activity-carousel-1',
-            imageUrl: 'images/E02.jpg',
+            imageUrl: 'images/E02.jpg', // Corrected from 'mages/'
             title: 'Zoreko - Best Deals',
             date: 'Ongoing',
             tag: 'Indoor Fun'
         },
         {
             id: 'activity-carousel-2',
-            imageUrl: 'images/A01.jppg',
+            imageUrl: 'images/A01.jpg', // Corrected from '.jppg'
             title: 'Mojoland Extravaganza',
             date: '6 Jun - 6 Jul, 10:30AM',
             location: '54th Grand Trunk Rd, Sonipat',
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             id: 'activity-carousel-3',
-            imageUrl: 'mages/E01.jpg',
+            imageUrl: 'images/E01.jpg', // Correct path
             title: 'Deals are Jumping this June at SKYJUMPER',
             date: 'Make your next jump count',
             tag: 'Trampoline'
