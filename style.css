@@ -1,14 +1,20 @@
-/* ======== GLOBAL & UTILITIES (Your CSS Variables should be at the top) ======== */
+/* ======== GLOBAL & UTILITIES ======== */
 :root {
     -webkit-text-size-adjust: 100%;
     tab-size: 4;
     font-feature-settings: normal;
     font-variation-settings: normal;
     -webkit-tap-highlight-color: transparent;
+
+    /* --- Brand Colors --- */
     --color-brand-district-pink: #e13ff3;
     --color-brand-district-purple: #6444e4;
     --color-brand-district-black: #000;
     --color-brand-pure-white: #fff;
+    --color-brand-district-yellow: #f2c94c;
+    --color-brand-district-blue: #2a96f4;
+    
+    /* --- Greyscale --- */
     --color-grey-50: #fafafa;
     --color-grey-100: #eaeaea;
     --color-grey-150: #cfcfd3;
@@ -24,7 +30,10 @@
     --color-black-alpha-8: rgba(0,0,0,.08);
     --color-black-alpha-16: rgba(0,0,0,.16);
     --color-black-alpha-24: rgba(0,0,0,.24);
-    /* ... (Include ALL your CSS variables here from the block you provided earlier) ... */
+    --color-black-alpha-64: rgba(0,0,0,.64);
+    --color-white-alpha-64: rgba(255,255,255,0.64);
+    
+    /* --- Functional Colors --- */
     --color-purple-50: #f6f4ff;
     --color-purple-100: #eae5ff;
     --color-purple-200: #bcaefe;
@@ -37,18 +46,19 @@
     --color-blue-300: #62b2f8;
     --color-blue-500: #2a96f4;
     --color-yellow-50: #fffef5;
+    --color-yellow-500: #d4c22a;
     --color-green-100: #e6ffe9;
     --color-green-400: #45e784;
     --color-green-500: #23e764;
     --color-green-600: #1abc50;
     --color-red-500: #fb4173;
 
+    /* --- Typography --- */
     --font-family-base: BeVietnamPro, sans-serif;
     --font-regular: 400;
     --font-medium: 500;
     --font-semibold: 600;
     --font-bold: 700;
-
     --font-size-xs: 10px;
     --font-size-sm: 12px;
     --font-size-base: 14px;
@@ -56,6 +66,7 @@
     --font-size-xl: 18px;
     --font-size-2xl: 24px;
 
+    /* --- Spacing --- */
     --space-4: 4px;
     --space-8: 8px;
     --space-12: 12px;
@@ -65,6 +76,7 @@
     --space-32: 32px;
     --space-40: 40px;
 
+    /* --- Light Theme Variables --- */
     --color-surface-primary: #fff;
     --color-surface-secondary: #fafafa;
     --color-text-primary: #131316;
@@ -73,8 +85,8 @@
     --color-border-subtle: rgba(0,0,0,.08);
     --color-border-moderate: #ccc;
 
-    --header-height: 70px; /* Example, adjust to your actual header height */
-    --footer-height: 150px; /* Example, adjust */
+    --header-height: 70px;
+    --footer-height: 150px;
 }
 
 body {
@@ -85,13 +97,12 @@ body {
     line-height: 1.5;
 }
 
-/* General page wrapper */
 .page-content-wrapper {
-    padding-top: var(--space-20); /* Ensure content doesn't hide under fixed header if any */
+    padding-top: var(--space-20);
     min-height: calc(100vh - var(--header-height) - var(--footer-height));
 }
 
-/* ======== HEADER & FOOTER (Mostly from your provided CSS) ======== */
+/* ======== HEADER & FOOTER (Desktop) ======== */
 .header-container {
     display: flex;
     justify-content: space-between;
@@ -101,12 +112,10 @@ body {
     background-color: var(--color-surface-primary);
     position: sticky;
     top: 0;
-    z-index: 900; /* Ensure header is above most content */
+    z-index: 900;
 }
 .header-left { display: flex; align-items: center; }
-.logo img { height: 40px; margin-right: var(--space-20); display: block; 
-    filter: invert(1);
-}
+.logo img { height: 40px; margin-right: var(--space-20); display: block; }
 .location { display: flex; align-items: center; margin-right: var(--space-24); border-left: 1px solid var(--color-grey-150); padding-left: var(--space-20); }
 .location-icon { width: 20px; height: 20px; margin-right: var(--space-8); color: var(--color-grey-500); }
 .location-text { display: flex; flex-direction: column; font-size: 0.9em; }
@@ -115,7 +124,6 @@ body {
 .header-left nav ul { list-style: none; padding: 0; margin: 0; display: flex; }
 .header-left nav ul li { margin-right: var(--space-20); }
 .header-left nav ul li a { color: var(--color-text-secondary); text-decoration: none; padding: var(--space-8) 0; font-size: var(--font-size-base); font-weight: var(--font-medium); }
-.header-left nav ul li.active a { font-weight: var(--font-bold); /* Specific active colors per page later */ }
 
 .header-right { display: flex; align-items: center; }
 .search-bar { display: flex; align-items: center; background-color: var(--color-grey-50); padding: var(--space-8) var(--space-12); border-radius: var(--space-8); margin-right: var(--space-20); }
@@ -131,22 +139,19 @@ body {
 .footer-links a:hover { text-decoration: underline; }
 .footer-qr img { width: 80px; height: 80px; background-color: white; padding: var(--space-4); border-radius: var(--space-4); }
 
-/* ======== FOR YOU PAGE (index.html) ======== */
+/* ======== CONTENT SECTIONS (Desktop) ======== */
+/* --- For You Page --- */
 .page-content-wrapper.for-you-page { background-color: var(--color-purple-50); }
 .welcome-section { text-align: center; padding: var(--space-20) var(--space-16) var(--space-32); }
 .welcome-section h2 { font-size: var(--font-size-2xl); color: var(--color-text-primary); font-weight: var(--font-semibold); margin-bottom: var(--space-8); display: inline-block; position: relative; }
 .welcome-section h2::after { content: ''; display: block; width: 60%; height: 3px; background-color: var(--color-brand-district-purple); margin: var(--space-8) auto var(--space-16); }
 .welcome-section p { font-size: var(--font-size-lg); color: var(--color-text-secondary); line-height: 1.6; max-width: 600px; margin-left: auto; margin-right: auto; }
-
 .content-section { max-width: 1200px; margin-left: auto; margin-right: auto; padding: var(--space-20) var(--space-16); }
 .content-section > h2 { font-size: var(--font-size-xl); color: var(--color-text-primary); margin-bottom: var(--space-8); display: inline-block; position: relative; text-transform: uppercase; font-weight: var(--font-semibold); padding-left: var(--space-4); }
 .content-section > h2::after { content: ''; display: block; width: 80px; height: 3px; background-color: var(--color-brand-district-purple); margin-top: var(--space-8); margin-bottom: var(--space-20); }
-
 .horizontal-scroll-container { display: flex; overflow-x: auto; gap: var(--space-16); padding: var(--space-8) var(--space-4) var(--space-16); -webkit-overflow-scrolling: touch; }
 .horizontal-scroll-container::-webkit-scrollbar { height: 6px; }
 .horizontal-scroll-container::-webkit-scrollbar-thumb { background: var(--color-grey-200); border-radius: 3px; }
-
-.previous-hits-section .movie-card-item { flex: 0 0 200px; /* Styles for movie-card-item are defined under Movies section */ }
 .amusement-card-item { flex: 0 0 280px; background-color: var(--color-surface-primary); border-radius: var(--space-12); overflow: hidden; box-shadow: 0 4px 12px var(--color-black-alpha-16); transition: transform 0.2s ease-in-out; }
 .amusement-card-item:hover { transform: translateY(-4px); }
 .amusement-image-container { width: 100%; height: 160px; background-color: var(--color-grey-100); }
@@ -155,94 +160,12 @@ body {
 .amusement-title { font-size: var(--font-size-lg); color: var(--color-text-primary); font-weight: var(--font-semibold); margin-bottom: var(--space-8); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .amusement-category, .amusement-location { font-size: var(--font-size-sm); color: var(--color-text-quaternary); margin-bottom: var(--space-4); }
 
-/* Active Nav Link for "For You" */
-.header-left nav ul li.active a[href="index.html"] { color: var(--color-brand-district-pink); border-bottom: 2px solid var(--color-brand-district-pink); }
+/* --- Dining Page --- */
+.page-content-wrapper.dining-page-simple { padding: 0; max-width: 1280px; margin: 0 auto; }
+.dining-banner-image { width: 100%; height: auto; display: block; }
 
-/* ======== DINING PAGE (dining.html) ======== */
-/* --- SIMPLE DINING PAGE BANNER STYLES --- */
-
-/* Wrapper for the simple dining page to remove extra padding */
-.page-content-wrapper.dining-page-simple {
-    padding: 0; /* Remove padding to allow the image to be full-width */
-    max-width: 1280px; /* Optional: sets a max width for very large screens */
-    margin: 0 auto; /* Center the content */
-}
-
-/* Styles for the banner image itself */
-.dining-banner-image {
-    width: 100%; /* Make the image take the full width of its container */
-    height: auto; /* Maintain the image's aspect ratio */
-    display: block; /* Removes any extra space below the image */
-}
-/* Active Nav Link for "Dining" */
-.header-left nav ul li.active a[href="dining.html"] { color: var(--color-brand-district-pink); /* Or specific dining color */ border-bottom: 2px solid var(--color-brand-district-pink); }
-
-
-/* ======== EVENTS & ACTIVITIES CAROUSEL (Shared) ======== */
-.event-carousel-section, .activity-carousel-section { position: relative; width: 100%; max-width: 1200px; margin: var(--space-20) auto var(--space-40); overflow: hidden; }
-.carousel-viewport { width: 100%; overflow: visible; padding: var(--space-20) 0; }
-.carousel-container { display: flex; align-items: center; transition: transform 0.5s ease-in-out; position: relative; min-height: 350px; }
-.carousel-slide { min-width: 60%; margin: 0 var(--space-8); border-radius: var(--space-12); overflow: hidden; position: relative; transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out, z-index 0.5s; transform: scale(0.85); opacity: 0.7; z-index: 1; box-shadow: 0 4px 15px var(--color-black-alpha-24); }
-.carousel-slide.active { transform: scale(1); opacity: 1; z-index: 2; min-width: 70%; box-shadow: 0 8px 25px var(--color-black-alpha-32); }
-.carousel-slide.prev, .carousel-slide.next { transform: scale(0.85); opacity: 0.7; z-index: 1; }
-.carousel-slide.inactive { transform: scale(0.7); opacity: 0.4; z-index: 0; }
-.carousel-slide img { width: 100%; height: auto; display: block; aspect-ratio: 16/9; object-fit: cover; }
-.carousel-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, var(--color-black-alpha-64, rgba(0,0,0,0.64)) 0%, transparent 100%); color: var(--color-brand-pure-white); padding: var(--space-16); border-bottom-left-radius: var(--space-12); border-bottom-right-radius: var(--space-12); }
-.carousel-tag { background-color: var(--color-brand-district-purple); color: var(--color-brand-pure-white); padding: var(--space-4) var(--space-8); border-radius: var(--space-4); font-size: var(--font-size-sm); position: absolute; top: var(--space-12); left: var(--space-12); font-weight: var(--font-semibold); }
-.carousel-caption h3 { margin: var(--space-4) 0; font-size: var(--font-size-lg); font-weight: var(--font-semibold); }
-.carousel-caption p { margin: 0; font-size: var(--font-size-sm); opacity: 0.9; }
-.carousel-control { position: absolute; top: 50%; transform: translateY(-50%); background-color: var(--color-white-alpha-64, rgba(255,255,255,0.64)); color: var(--color-grey-800); border: none; padding: var(--space-8) var(--space-12); border-radius: 50%; cursor: pointer; z-index: 3; font-size: var(--font-size-xl); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
-.carousel-control:hover { background-color: var(--color-brand-pure-white); }
-.carousel-control.prev { left: var(--space-16); }
-.carousel-control.next { right: var(--space-16); }
-.carousel-dots { text-align: center; margin-top: var(--space-20); }
-.dot { height: var(--space-8); width: var(--space-8); margin: 0 var(--space-4); background-color: var(--color-grey-200); border-radius: 50%; display: inline-block; cursor: pointer; transition: background-color 0.3s ease, width 0.3s ease; }
-.dot.active { background-color: var(--color-brand-district-purple); width: var(--space-20); }
-
-/* ======== EVENTS PAGE (events.html) ======== */
-/* --- EVENTS PAGE & 3D COVERFLOW CAROUSEL --- */
-/* --- GLOBAL STYLES & VARIABLES --- */
-:root {
-    --primary-text: #1C1C1C;
-    --secondary-text: #4F4F4F;
-    --background-color: #fbfaf5; /* Creamy background for events page */
-    --white: #FFFFFF;
-    --border-color: #E0E0E0;
-    --purple-highlight: #6C48FF;
-}
-
-body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-color: var(--background-color);
-    color: var(--primary-text);
-}
-
-/* --- HEADER --- */
-.header-container { display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; background-color: var(--white); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 1000; }
-.header-left, .header-right { display: flex; align-items: center; gap: 2rem; }
-.logo a { text-decoration: none; }
-.logo-graphic { width: 110px; height: 28px; background-color: var(--primary-text); mask-image: url(logo.svg); -webkit-mask-image: url(logo.svg); mask-size: contain; -webkit-mask-size: contain; mask-repeat: no-repeat; -webkit-mask-repeat: no-repeat; mask-position: center; -webkit-mask-position: center; }
-.location { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; }
-.location-icon { width: 24px; height: 24px; color: var(--primary-text); }
-.location-text { display: flex; flex-direction: column; }
-.city { font-weight: 600; }
-.state { font-size: 0.8rem; color: var(--secondary-text); }
-nav ul { margin: 0; padding: 0; list-style: none; display: flex; gap: 1.5rem; }
-nav ul li a { text-decoration: none; color: var(--secondary-text); font-weight: 500; padding: 0.75rem 0; border-bottom: 3px solid transparent; transition: all 0.2s ease-in-out; }
-nav ul li a:hover { color: var(--purple-highlight); }
-nav ul li.active a[href="events.html"] { color: #b18d2f; font-weight: 600; border-bottom: 3px solid #f2c94c; }
-.search-bar { display: flex; align-items: center; background-color: #F5F5F5; border: 1px solid #E8E8E8; border-radius: 8px; padding: 0.5rem 0.75rem; width: 350px; }
-.search-icon { width: 20px; height: 20px; color: var(--secondary-text); margin-right: 0.5rem; }
-.search-bar input { border: none; background: none; outline: none; width: 100%; font-size: 1rem; }
-.profile-icon { width: 40px; height: 40px; background-color: var(--primary-text); border-radius: 50%; cursor: pointer; }
-
-/* --- MAIN CONTENT WRAPPER --- */
-.page-content-wrapper {
-    padding: 2rem 5%;
-}
-
-/* --- 3D COVERFLOW CAROUSEL --- */
+/* --- Events Page (3D Carousel) --- */
+.events-page, .page-content-wrapper.events-page { background-color: #fbfaf5; }
 .event-carousel-section { position: relative; height: 550px; margin-bottom: 2rem; display: flex; flex-direction: column; align-items: center; overflow: hidden; }
 .carousel-viewport { position: relative; width: 100%; height: 450px; perspective: 2000px; }
 .carousel-container { position: absolute; width: 100%; height: 100%; transform-style: preserve-3d; }
@@ -257,31 +180,25 @@ nav ul li.active a[href="events.html"] { color: #b18d2f; font-weight: 600; borde
 .carousel-control { position: absolute; top: 215px; transform: translateY(-50%); background-color: #fff; border: 1px solid #e0e0e0; border-radius: 50%; width: 44px; height: 44px; font-size: 2rem; font-weight: 300; color: #333; cursor: pointer; z-index: 20; box-shadow: 0 2px 5px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; line-height: 1; }
 .carousel-control.prev { left: 15%; padding-right: 3px; }
 .carousel-control.next { right: 15%; padding-left: 3px; }
-.active-slide-info { text-align: center; margin-top: 1rem; color: var(--primary-text); }
+.active-slide-info { text-align: center; margin-top: 1rem; color: #1C1C1C; }
 .active-slide-info .info-link { text-decoration: none; color: inherit; display: inline-block; }
 .active-slide-info .date { color: #4CAF50; font-weight: 600; font-size: 0.9rem; }
 .active-slide-info .title { font-size: 1.5rem; font-weight: 700; margin: 0.25rem 0; }
-.active-slide-info .location, .active-slide-info .price { color: var(--secondary-text); font-size: 1rem; margin: 0.1rem 0; }
-
-/* --- ARTISTS & ALL EVENTS SECTIONS --- */
-.artists-section, .all-events-section { margin-top: 3rem; }
-.artists-section h2, .all-events-section h2 { font-size: 1rem; color: var(--secondary-text); letter-spacing: 1px; margin-bottom: 2rem; text-align: center; }
+.active-slide-info .location, .active-slide-info .price { color: #4F4F4F; font-size: 1rem; margin: 0.1rem 0; }
+.artists-section h2, .all-events-section h2 { font-size: 1rem; color: #4F4F4F; letter-spacing: 1px; margin-bottom: 2rem; text-align: center; }
 .artist-cards-container { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
 .artist-card { text-align: center; }
 .artist-card img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 0.5rem; border: 3px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 .event-grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
-.event-card-item { background: var(--white); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); }
+.event-card-item { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); }
 .event-image-container img { width: 100%; height: 180px; object-fit: cover; }
 .event-details { padding: 1rem; }
 .event-date { font-size: 0.9rem; color: #E23744; font-weight: 500; }
 .event-title { font-size: 1.2rem; margin: 0.5rem 0; }
-.event-location { color: var(--secondary-text); margin-bottom: 0.75rem; }
+.event-location { color: #4F4F4F; margin-bottom: 0.75rem; }
 .event-price { font-weight: bold; }
-/* Active Nav Link for "Events" */
-.header-left nav ul li.active a[href="events.html"] { color: var(--color-yellow-500, #d4c22a); border-bottom: 2px solid var(--color-yellow-500, #d4c22a); }
 
-
-/* ======== ACTIVITIES PAGE (activities.html) ======== */
+/* --- Activities Page --- */
 .activities-page { background-color: var(--color-pink-50); }
 .activity-grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--space-24); }
 .activity-card-item { background-color: var(--color-surface-primary); border-radius: var(--space-12); overflow: hidden; box-shadow: 0 4px 12px var(--color-black-alpha-16); transition: transform 0.2s ease-in-out; cursor: pointer; }
@@ -291,26 +208,10 @@ nav ul li.active a[href="events.html"] { color: #b18d2f; font-weight: 600; borde
 .activity-date { font-size: var(--font-size-sm); color: var(--color-brand-district-pink); font-weight: var(--font-semibold); margin-bottom: var(--space-4); }
 .activity-title { font-size: var(--font-size-lg); color: var(--color-text-primary); font-weight: var(--font-semibold); margin-bottom: var(--space-8); line-height: 1.3; }
 .activity-location, .activity-price { font-size: var(--font-size-sm); color: var(--color-text-quaternary); margin-bottom: var(--space-4); }
-/* Single Activity Detail View */
-.single-activity-detail-view { max-width: 900px; margin: var(--space-20) auto; padding: var(--space-20); background-color: var(--color-surface-primary); border-radius: var(--space-8); }
-.single-activity-header { display: flex; gap: var(--space-24); margin-bottom: var(--space-24); }
-.single-activity-banner { width: 60%; max-width: 500px; height: auto; object-fit: cover; border-radius: var(--space-8); }
-.single-activity-info-box { background-color: var(--color-surface-secondary); padding: var(--space-20); border-radius: var(--space-8); flex-grow: 1; }
-.single-activity-info-box h2 { font-size: var(--font-size-2xl); color: var(--color-text-primary); margin-top: 0; margin-bottom: var(--space-12); }
-.single-activity-info-box p { font-size: var(--font-size-base); color: var(--color-text-secondary); margin-bottom: var(--space-8); display: flex; align-items: center; }
-.single-activity-info-box p .icon { margin-right: var(--space-8); font-size: 1.1em; }
-.single-activity-info-box .price-info { font-size: var(--font-size-lg); color: var(--color-text-primary); margin-top: var(--space-12); margin-bottom: var(--space-16); }
-.btn-book-activity { background-color: var(--color-grey-800); color: var(--color-brand-pure-white); border: none; padding: var(--space-12) var(--space-20); border-radius: var(--space-4); font-size: var(--font-size-base); font-weight: var(--font-semibold); cursor: pointer; width: 100%; text-transform: uppercase; margin-bottom: var(--space-12); }
-.activity-offer { background-color: var(--color-purple-100); color: var(--color-brand-district-purple); padding: var(--space-8); border-radius: var(--space-4); font-size: var(--font-size-sm); text-align: center; }
-.single-activity-content h3 { font-size: var(--font-size-xl); color: var(--color-text-primary); margin-bottom: var(--space-12); border-bottom: 1px solid var(--color-border-subtle); padding-bottom: var(--space-8); }
-.single-activity-content p { font-size: var(--font-size-base); line-height: 1.7; color: var(--color-text-secondary); }
-/* Active Nav Link for "Activities" */
-.header-left nav ul li.active a[href="activities.html"] { color: var(--color-pink-500); border-bottom: 2px solid var(--color-pink-500); }
 
-
-/* ======== MOVIES PAGE (movies.html) - GRID & NEW BOOKING FLOW ======== */
-.movies-page { background-color: var(--color-surface-primary); /* Use primary white for booking flow, grid part can have blue-50 */ }
-.now-showing-section { max-width: 1200px; margin: var(--space-20) auto; padding: 0 var(--space-20); background-color: var(--color-blue-50); /* Blue bg for grid section */ }
+/* --- Movies Page (Grid) --- */
+.movies-page { background-color: var(--color-surface-primary); }
+.now-showing-section { max-width: 1200px; margin: var(--space-20) auto; padding: 0 var(--space-20); background-color: var(--color-blue-50); }
 .now-showing-section h2 { font-size: var(--font-size-lg); color: var(--color-text-secondary); margin-bottom: var(--space-20); font-weight: var(--font-semibold); text-transform: uppercase; padding-top: var(--space-12); }
 .movie-grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: var(--space-20); padding-bottom: var(--space-20); }
 .movie-card-item { background-color: var(--color-surface-primary); border-radius: var(--space-12); overflow: hidden; box-shadow: 0 4px 10px var(--color-black-alpha-16); transition: transform 0.2s ease-in-out; cursor: pointer; }
@@ -321,18 +222,16 @@ nav ul li.active a[href="events.html"] { color: #b18d2f; font-weight: 600; borde
 .movie-info h3 { font-size: var(--font-size-base); color: var(--color-text-primary); font-weight: var(--font-semibold); margin: 0 0 var(--space-4) 0; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .movie-info p { font-size: var(--font-size-sm); color: var(--color-text-quaternary); margin: 0; }
 
-/* --- New Movie Booking Flow Styles --- */
-.back-button { /* General back button */ background: none; border: none; color: var(--color-text-secondary); font-size: var(--font-size-xl); cursor: pointer; margin-bottom: var(--space-12); display: inline-flex; align-items: center; padding: var(--space-4) 0; }
+/* ======== MOVIE BOOKING FLOW (Desktop) ======== */
+.back-button { background: none; border: none; color: var(--color-text-secondary); font-size: var(--font-size-xl); cursor: pointer; margin-bottom: var(--space-12); display: inline-flex; align-items: center; padding: var(--space-4) 0; }
 .back-button:hover { color: var(--color-brand-district-blue); }
-
-/* Step 1: Movie Showtimes View */
+/* --- Step 1: Showtimes --- */
 .movie-showtimes-page { max-width: 900px; margin: 0 auto; padding: var(--space-20); background-color: var(--color-surface-primary); }
 .movie-details-header { display: flex; gap: var(--space-20); margin-bottom: var(--space-24); align-items: flex-start; }
 .details-movie-poster { width: 130px; height: auto; border-radius: var(--space-8); object-fit: cover; box-shadow: 0 2px 8px var(--color-black-alpha-16); }
 .details-movie-info h1 { font-size: var(--font-size-2xl); color: var(--color-text-primary); margin: 0 0 var(--space-4) 0; font-weight: var(--font-semibold); }
 .details-movie-info p { font-size: var(--font-size-sm); color: var(--color-text-quaternary); margin-bottom: var(--space-12); }
 .details-movie-info .btn-outline { background-color: transparent; border: 1px solid var(--color-border-moderate); color: var(--color-text-secondary); padding: var(--space-8) var(--space-16); border-radius: var(--space-4); font-size: var(--font-size-sm); cursor: pointer; }
-
 .date-scroller { display: flex; overflow-x: auto; padding-bottom: var(--space-12); margin-bottom: var(--space-20); gap: var(--space-8); -webkit-overflow-scrolling: touch; }
 .date-item { background-color: var(--color-surface-primary); border: 1px solid var(--color-border-subtle); border-radius: var(--space-8); padding: var(--space-8) var(--space-12); text-align: center; cursor: pointer; min-width: 60px; transition: background-color 0.2s, border-color 0.2s, color 0.2s; }
 .date-item:hover { border-color: var(--color-brand-district-blue); }
@@ -341,19 +240,16 @@ nav ul li.active a[href="events.html"] { color: #b18d2f; font-weight: 600; borde
 .date-day-num { display: block; font-size: var(--font-size-lg); font-weight: var(--font-semibold); }
 .date-day-name { font-size: var(--font-size-xs); text-transform: uppercase; }
 .date-month { font-size: var(--font-size-xs); text-transform: uppercase; margin-top: 2px;}
-
 .filters-bar { display: flex; gap: var(--space-8); margin-bottom: var(--space-12); flex-wrap: wrap; }
 .filter-btn { background-color: var(--color-surface-primary); border: 1px solid var(--color-border-moderate); color: var(--color-text-secondary); padding: var(--space-8) var(--space-12); border-radius: var(--space-16); font-size: var(--font-size-sm); cursor: pointer; display: inline-flex; align-items: center; }
 .filter-btn .icon { margin-right: var(--space-4); }
 .filter-btn .arrow { margin-left: var(--space-4); font-size: 0.8em; }
-
 .availability-legend { display: flex; gap: var(--space-16); font-size: var(--font-size-sm); color: var(--color-text-quaternary); margin-bottom: var(--space-20); }
 .legend-item { display: flex; align-items: center; }
 .availability-legend .dot { width: 10px; height: 10px; border-radius: 50%; margin-right: var(--space-4); }
 .availability-legend .dot.available { background-color: var(--color-green-500); }
-.availability-legend .dot.filling-fast { background-color: var(--color-yellow-500, #d4c22a); }
+.availability-legend .dot.filling-fast { background-color: var(--color-yellow-500); }
 .availability-legend .dot.almost-full { background-color: var(--color-red-500); }
-
 .cinema-listing { margin-bottom: var(--space-24); border-top: 1px solid var(--color-border-subtle); padding-top: var(--space-16); }
 .cinema-info { display: flex; align-items: center; gap: var(--space-12); margin-bottom: var(--space-12); }
 .cinema-logo { width: 40px; height: 40px; border-radius: 50%; object-fit: contain; border: 1px solid var(--color-border-subtle); }
@@ -365,204 +261,151 @@ nav ul li.active a[href="events.html"] { color: #b18d2f; font-weight: 600; borde
 .showtime-screen { display: block; font-size: 0.75em; color: var(--color-text-quaternary); margin-top: 2px; }
 .showtime-availability-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-left: var(--space-4); vertical-align: middle; }
 .showtime-availability-dot.available { background-color: var(--color-green-500); }
-.showtime-availability-dot.filling-fast { background-color: var(--color-yellow-500, #d4c22a); }
+.showtime-availability-dot.filling-fast { background-color: var(--color-yellow-500); }
 .showtime-availability-dot.almost-full { background-color: var(--color-red-500); }
 
-
-/* Step 2: Seat Selection View */
+/* --- Step 2: Seat Selection --- */
 .seat-selection-page { max-width: 900px; margin: 0 auto; padding: var(--space-16); background-color: var(--color-surface-primary); }
 .seat-selection-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: var(--space-12); border-bottom: 1px solid var(--color-border-subtle); margin-bottom: var(--space-16); }
 .seat-selection-header h3 { font-size: var(--font-size-lg); color: var(--color-text-primary); margin: 0; font-weight: var(--font-semibold); }
 .seat-selection-header p { font-size: var(--font-size-sm); color: var(--color-text-quaternary); margin: 0; }
 .ticket-count-selector label { font-size: var(--font-size-sm); margin-right: var(--space-8); }
 .ticket-count-selector select { padding: var(--space-4) var(--space-8); border-radius: var(--space-4); border: 1px solid var(--color-border-moderate); }
-
 .seat-map-area { margin-bottom: var(--space-16); overflow-x: auto; padding: var(--space-8); }
 .seat-category-section { margin-bottom: var(--space-16); }
 .seat-category-price { font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-bottom: var(--space-8); text-align: center; font-weight: var(--font-semibold); }
-.seat-row-layout { display: flex; align-items: center; justify-content: center; gap: var(--space-20); /* Gap between left/right groups */ margin-bottom: var(--space-4); }
+.seat-row-layout { display: flex; align-items: center; justify-content: center; gap: var(--space-20); margin-bottom: var(--space-4); }
 .row-identifier { font-size: var(--font-size-sm); color: var(--color-text-quaternary); width: 20px; text-align: right; margin-right: var(--space-8); }
 .seats-group { display: flex; gap: var(--space-4); }
 .seat { width: 30px; height: 30px; border: 1px solid var(--color-grey-200); display: flex; align-items: center; justify-content: center; font-size: var(--font-size-xs); cursor: pointer; border-radius: var(--space-4); transition: background-color 0.1s, border-color 0.1s; background-color: var(--color-surface-primary); }
 .seat.available:hover { background-color: var(--color-grey-50); }
 .seat.selected { background-color: var(--color-green-500); color: var(--color-brand-pure-white); border-color: var(--color-green-600); }
 .seat.booked { background-color: var(--color-grey-150); color: var(--color-grey-400); cursor: not-allowed; border-color: var(--color-grey-200); }
-.seat.wheelchair { background-image: url('https://img.icons8.com/ios-filled/15/77777e/wheelchair.png'); background-repeat: no-repeat; background-position: center; font-size:0; /* Hide number if icon */ }
-.seat.wheelchair.booked { background-image: url('https://img.icons8.com/ios-filled/15/FFFFFF/wheelchair.png'); } /* White icon on dark bg */
 .seat.no-seat { background-color: transparent; border: none; cursor: default; }
-
-.screen-this-way-visual { display: flex; justify-content: center; margin-bottom: var(--space-4); }
-.screen-this-way-visual div { width: 60%; height: 20px; background-color: var(--color-purple-200); border-radius: 10px 10px 0 0; text-align: center; color: var(--color-purple-700); font-size: var(--font-size-xs); padding-top: 2px; display: none; /* Hidden for now, can add text back */ }
 .screen-indicator-text { text-align: center; font-size: var(--font-size-sm); color: var(--color-text-quaternary); margin-bottom: var(--space-12); }
-
 .seat-legend.modern { display: flex; justify-content: center; gap: var(--space-16); margin-bottom: var(--space-16); font-size: var(--font-size-sm); }
 .seat-legend.modern .legend-item { display: flex; align-items: center; gap: var(--space-4); }
 .seat-indicator { width: 15px; height: 15px; border-radius: 3px; border: 1px solid var(--color-grey-300); }
 .seat-indicator.available { background-color: var(--color-surface-primary); }
 .seat-indicator.occupied { background-color: var(--color-grey-150); border-color: var(--color-grey-200); }
 .seat-indicator.selected { background-color: var(--color-green-500); border-color: var(--color-green-600); }
-.seat-indicator.wheelchair-legend { background-color: var(--color-surface-primary); display:flex; align-items:center; justify-content:center; }
-.seat-indicator.wheelchair-legend img { width: 10px; height: 10px;}
-
 .btn-primary-seat { background-color: var(--color-grey-800); color: var(--color-brand-pure-white); border: none; padding: var(--space-12) var(--space-20); border-radius: var(--space-4); font-size: var(--font-size-base); font-weight: var(--font-semibold); cursor: pointer; display: block; width: 100%; margin-top: var(--space-16); }
 .btn-primary-seat:disabled { background-color: var(--color-grey-200); cursor: not-allowed; }
 
-/* Step 3: Booking Summary View */
-.booking-summary-page { max-width: 900px; margin: 0 auto; padding: var(--space-16); background-color: var(--color-grey-50); } /* Page background */
+/* --- Step 3: Booking Summary --- */
+.booking-summary-page { max-width: 900px; margin: 0 auto; padding: var(--space-16); background-color: var(--color-grey-50); }
 .summary-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: var(--space-12); margin-bottom: var(--space-16); }
 .summary-header h3 { font-size: var(--font-size-lg); color: var(--color-text-primary); margin: 0; text-align: center; flex-grow: 1; font-weight: var(--font-semibold); }
 .summary-content-wrapper { display: flex; gap: var(--space-24); background-color: var(--color-surface-primary); padding: var(--space-20); border-radius: var(--space-8); }
 .booking-details-column { flex: 2; }
-.payment-summary-column { flex: 1; background-color: var(--color-surface-primary); padding: var(--space-16); border-radius: var(--space-8); /* box-shadow: 0 2px 5px var(--color-black-alpha-8); Removed as main wrapper has bg */ }
-
+.payment-summary-column { flex: 1; background-color: var(--color-surface-primary); padding: var(--space-16); border-radius: var(--space-8); }
 .summary-movie-card { display: flex; gap: var(--space-12); margin-bottom: var(--space-16); }
 .summary-movie-card img { width: 60px; height: auto; border-radius: var(--space-4); }
 .summary-movie-card h4 { font-size: var(--font-size-base); color: var(--color-text-primary); margin: 0 0 var(--space-4) 0; font-weight: var(--font-semibold); }
 .summary-movie-card p { font-size: var(--font-size-xs); color: var(--color-text-quaternary); margin: 0; }
-
 .summary-show-info { padding: var(--space-12) 0; border-top: 1px dashed var(--color-border-subtle); border-bottom: 1px dashed var(--color-border-subtle); margin-bottom: var(--space-16); }
 .summary-show-info p { font-size: var(--font-size-sm); margin: var(--space-4) 0; }
 .total-ticket-price { font-weight: var(--font-semibold); text-align: right; font-size: var(--font-size-base) !important; color: var(--color-text-primary); }
-
 .cancellation-info { background-color: var(--color-yellow-50); padding: var(--space-8); border-radius: var(--space-4); font-size: var(--font-size-xs); color: var(--color-text-secondary); margin-bottom: var(--space-16); display: flex; align-items: center; }
 .cancellation-info .icon { margin-right: var(--space-4); }
-
-.offers-section, .food-beverages-section { margin-bottom: var(--space-16); }
 .offers-section h4, .food-beverages-section h4 { font-size: var(--font-size-base); font-weight: var(--font-semibold); margin-bottom: var(--space-8); display: flex; justify-content: space-between; align-items: center; }
 .see-all { font-size: var(--font-size-sm); color: var(--color-brand-district-pink); text-decoration: none; font-weight: var(--font-medium); }
-.offer-item { display: flex; align-items: center; gap: var(--space-8); background-color: var(--color-surface-primary); padding: var(--space-8); border: 1px solid var(--color-border-subtle); border-radius: var(--space-4); }
-.offer-item img { width: 20px; height: 20px; }
-.offer-item p { font-size: var(--font-size-sm); font-weight: var(--font-medium); margin: 0; }
-.offer-item span { font-size: var(--font-size-xs); color: var(--color-text-quaternary); }
 .apply-btn { background: none; border: 1px solid var(--color-brand-district-pink); color: var(--color-brand-district-pink); padding: var(--space-4) var(--space-8); border-radius: var(--space-4); font-size: var(--font-size-xs); cursor: pointer; margin-left: auto; }
-
 .payment-summary-column h4 { font-size: var(--font-size-base); font-weight: var(--font-semibold); margin-bottom: var(--space-12); }
 .payment-line-item { display: flex; justify-content: space-between; font-size: var(--font-size-sm); margin-bottom: var(--space-8); }
-.payment-line-item span:first-child { color: var(--color-text-secondary); }
-.payment-line-item span:last-child { font-weight: var(--font-medium); }
-.payment-line-item .arrow-dropdown { font-size: 0.8em; margin-left: var(--space-4); }
 .payment-summary-column hr { border: 0; border-top: 1px solid var(--color-border-subtle); margin: var(--space-8) 0 var(--space-12) 0; }
 .to-be-paid span { font-weight: var(--font-bold) !important; color: var(--color-text-primary); font-size: var(--font-size-base) !important; }
-
-.user-details-summary { background-color: var(--color-surface-secondary); padding: var(--space-12); border-radius: var(--space-4); font-size: var(--font-size-sm); margin-bottom: var(--space-12); }
-.user-details-summary p { margin: var(--space-4) 0; display: flex; align-items: center; }
-.user-details-summary .icon { margin-right: var(--space-8); }
-.edit-link { font-size: var(--font-size-xs); color: var(--color-brand-district-pink); text-decoration: none; font-weight: var(--font-medium); float: right; }
-
-.terms-conditions { background-color: var(--color-surface-secondary); padding: var(--space-12); border-radius: var(--space-4); font-size: var(--font-size-sm); margin-bottom: var(--space-20); display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
-.terms-conditions .icon { margin-right: var(--space-8); }
-.terms-conditions .arrow-right { font-size: 1.2em; }
-
-.final-payment-action { display: flex; justify-content: space-between; align-items: center; background-color: var(--color-grey-800); color: var(--color-brand-pure-white); padding: var(--space-12); border-radius: var(--space-4); position: sticky; bottom: 0; /* Make it sticky if page scrolls */ }
+.final-payment-action { display: flex; justify-content: space-between; align-items: center; background-color: var(--color-grey-800); color: var(--color-brand-pure-white); padding: var(--space-12); border-radius: var(--space-4); position: sticky; bottom: 0; }
 .total-payable-bottom { font-size: var(--font-size-base); font-weight: var(--font-bold); }
 .proceed-to-pay-btn { background: none; border: none; color: var(--color-brand-pure-white); font-size: var(--font-size-base); font-weight: var(--font-semibold); cursor: pointer; text-transform: uppercase; }
 
-
-/* Active Nav Link for "Movies" */
+/* ======== ACTIVE NAV LINKS (Desktop) ======== */
+.header-left nav ul li.active a[href="index.html"] { color: var(--color-brand-district-pink); border-bottom: 2px solid var(--color-brand-district-pink); }
+.header-left nav ul li.active a[href="dining.html"] { color: var(--color-brand-district-pink); border-bottom: 2px solid var(--color-brand-district-pink); }
+.header-left nav ul li.active a[href="events.html"] { color: var(--color-brand-district-yellow); border-bottom: 2px solid var(--color-brand-district-yellow); }
+.header-left nav ul li.active a[href="activities.html"] { color: var(--color-pink-500); border-bottom: 2px solid var(--color-pink-500); }
 .header-left nav ul li.active a[href="movies.html"] { color: var(--color-blue-500); border-bottom: 2px solid var(--color-blue-500); }
 
 
-/* Loading and Error Indicators (Generic) */
-.loading-indicator, .error-message { text-align: center; padding: var(--space-40) var(--space-20); font-size: var(--font-size-lg); color: var(--color-text-secondary); }
-.error-message { color: var(--color-red-500); }
-
-/* Responsive Adjustments */
-/*@media (max-width: 992px) {
-    .promo-actions-section { flex-direction: column; gap: var(--space-16); }
-    .action-card { width: 80%; }
-    .district-specials-section .polaroid-card, .deals-savings-section .polaroid-card { width: calc(50% - var(--space-20)); }
-    .single-activity-header { flex-direction: column; }
-    .single-activity-banner { width: 100%; }
-}
-
-@media (max-width: 768px) {
-    .header-left nav ul { /* Consider a mobile menu strategy here */ }
-    /*.cards-container, .artist-cards-container { /* Already have overflow-x for horizontal scrolling */ }
-    /*.polaroid-card, .district-specials-section .polaroid-card, .deals-savings-section .polaroid-card { width: 80%; max-width: 350px; transform: rotate(0deg) !important; }
-    .action-card { width: 90%; }
-    .movie-grid-container { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); } /* Smaller movie cards */
-   /* .summary-content-wrapper { flex-direction: column; }
-    .seat-map-area { /* Potentially reduce seat size further or ensure good scroll */ }
-    /*.seat { width: 25px; height: 25px; font-size: 8px;}
-    .seat-selection-header { flex-direction: column; align-items: flex-start; gap: var(--space-8);}
-    .ticket-count-selector { margin-top: var(--space-8);}
-}*/
-
-/*@media (max-width: 480px) {
-    .header-container { padding: var(--space-12) var(--space-16); }
-    .location { display: none; } /* Hide location on very small screens */
-    /*.search-bar input { width: 150px; }
-    .date-scroller .date-item { min-width: 50px; padding: var(--space-8) var(--space-8); }
-    .filters-bar { flex-direction: column; align-items: stretch; }
-    .filters-bar .filter-btn { width: 100%; justify-content: center; margin-bottom: var(--space-4);}
-    .movie-details-header { flex-direction: column; align-items: center; text-align: center; }
-    .details-movie-poster { margin-bottom: var(--space-12); }
-}*/
-
 /* #################################################################### */
-/* #############   MOBILE RESPONSIVE STYLES (FINAL FIX)   ############# */
+/* #############   MOBILE RESPONSIVE STYLES (800px & below)  ############# */
 /* #################################################################### */
 
 @media (max-width: 800px) {
 
-    /* --- 1. GLOBAL OVERRIDES --- */
+    /* --- 1. GLOBAL & LAYOUT OVERRIDES --- */
     body {
-        background-color: var(--color-grey-900);
+        background-color: var(--color-grey-900); /* Main dark background */
+        color: var(--color-grey-100); /* Default text to light */
     }
+
     .page-content-wrapper {
-        padding-top: 76px;    /* 60px header + 16px space */
-        padding-bottom: 76px; /* 60px footer + 16px space */
-        padding-left: 0;
-        padding-right: 0;
-        background-color: transparent !important; /* Ensure content area is dark */
+        padding: 60px 0 76px 0; /* Top padding for header, bottom for nav */
+        background-color: transparent !important; /* Let body background show */
         min-height: 100vh;
+        box-sizing: border-box;
     }
     
-    /* --- 2. MOBILE TOP BAR --- */
+    /* --- 2. MOBILE TOP BAR (Fixed) --- */
     .header-container {
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
         display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
+        justify-content: space-between; /* Adjusted for search */
         align-items: center;
         height: 60px;
         padding: 0 var(--space-16);
-        background-color: var(--color-brand-pure-white);
-        border-bottom: 1px solid var(--color-grey-100);
+        background-color: var(--color-grey-900); /* Dark header */
+        border-bottom: 1px solid var(--color-grey-700);
         z-index: 950;
     }
+    
     .header-left {
         gap: var(--space-16);
     }
     .logo img {
         height: 28px;
-        filter: none;
+        filter: brightness(0) invert(1); /* Make logo white */
         margin-right: 0;
     }
     .location {
-        display: flex;
+        display: flex; /* Kept as per your original mobile CSS */
         padding-left: var(--space-16);
-        border-left: 1px solid var(--color-grey-150);
+        border-left: 1px solid var(--color-grey-700);
         margin-right: 0;
         gap: var(--space-8);
     }
     .location-icon,
     .location-text .city,
     .location-text .state {
-      color: var(--color-text-primary);
+        color: var(--color-grey-100); /* Light text */
     }
 
-    /* HIDE desktop elements */
-    .header-left nav,
-    .header-right {
+    /* HIDE desktop elements, show mobile search */
+    .header-left nav, .header-right .profile-icon {
         display: none;
     }
+    .header-right {
+        display: block;
+    }
+    .search-bar {
+        background-color: var(--color-grey-800);
+        margin-right: 0;
+    }
+    .search-bar input {
+        color: var(--color-brand-pure-white);
+        width: 120px; /* Adjust as needed */
+    }
+    .search-bar input::placeholder {
+        color: var(--color-grey-400);
+    }
+    .search-icon {
+        color: var(--color-grey-400);
+    }
 
-    /* --- 3. MOBILE BOTTOM NAVIGATION --- */
-    /* Remember to add the <nav class="mobile-bottom-nav"> HTML to your pages */
+    /* --- 3. MOBILE BOTTOM NAVIGATION (Fixed) --- */
     .mobile-bottom-nav {
         display: flex;
         position: fixed;
@@ -573,6 +416,7 @@ nav ul li.active a[href="events.html"] { color: #b18d2f; font-weight: 600; borde
         background-color: var(--color-grey-800);
         border-top: 1px solid var(--color-grey-700);
         z-index: 1000;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
     }
     .mobile-bottom-nav .nav-link {
         display: flex;
@@ -594,14 +438,17 @@ nav ul li.active a[href="events.html"] { color: #b18d2f; font-weight: 600; borde
         font-weight: 500;
     }
     .mobile-bottom-nav .nav-link.active {
-        color: var(--color-brand-district-pink);
+        color: var(--color-brand-district-pink); /* Universal active color for simplicity */
+    }
+    /* Hide desktop footer */
+    .footer-container {
+        display: none;
     }
 
-    /* --- 4. MOBILE CONTENT STYLING --- */
+    /* --- 4. MOBILE CONTENT & CARD STYLING --- */
     .content-section {
         max-width: 100%;
-        padding-left: var(--space-16);
-        padding-right: var(--space-16);
+        padding: var(--space-20) var(--space-16);
         box-sizing: border-box;
     }
     .content-section > h2 {
@@ -610,7 +457,6 @@ nav ul li.active a[href="events.html"] { color: #b18d2f; font-weight: 600; borde
         text-align: center;
         margin-bottom: var(--space-16);
         padding-left: 0;
-        text-transform: uppercase;
         position: relative;
     }
     .content-section > h2::after {
@@ -620,45 +466,138 @@ nav ul li.active a[href="events.html"] { color: #b18d2f; font-weight: 600; borde
         margin-left: auto;
         margin-right: auto;
         display: block;
-        position: static; /* Reset from desktop */
+        position: static;
         margin-top: var(--space-8);
     }
     
     .horizontal-scroll-container {
+        margin: 0 -16px; /* Extend to screen edges */
         padding: var(--space-8) var(--space-16) var(--space-16);
-        margin-left: -16px; 
-        margin-right: -16px;
         scrollbar-width: none;
     }
     .horizontal-scroll-container::-webkit-scrollbar {
         display: none;
     }
 
-    /* Universal card style for mobile */
-    .movie-card-item,
-    .amusement-card-item {
-        background-color: var(--color-brand-pure-white);
+    /* Universal DARK card style for mobile */
+    .movie-card-item, .amusement-card-item, .event-card-item, .activity-card-item {
+        background-color: var(--color-grey-800);
         box-shadow: none;
         border-radius: var(--space-12);
+        color: var(--color-brand-pure-white);
+        border: 1px solid var(--color-grey-700);
     }
-    .movie-info, .amusement-details,
-    .movie-info *, .amusement-details * {
-         color: var(--color-text-primary);
+    .movie-info, .amusement-details, .event-details, .activity-details {
+        color: var(--color-brand-pure-white);
     }
-    .previous-hits-section .movie-card-item {
-        flex: 0 0 160px;
+    .movie-info *, .amusement-details *, .event-details *, .activity-details * {
+        color: inherit;
     }
-    .amusement-card-item {
-        flex: 0 0 240px;
+    .movie-info p, .amusement-category, .amusement-location, .event-location, .activity-location, .event-price, .activity-price {
+        color: var(--color-grey-300);
     }
+    .event-date, .activity-date {
+        color: var(--color-brand-district-pink);
+    }
+
+    .previous-hits-section .movie-card-item { flex: 0 0 160px; }
+    .amusement-card-item { flex: 0 0 240px; }
     
-    .movie-grid-container {
+    .movie-grid-container, .activity-grid-container, .event-grid-container {
         grid-template-columns: repeat(2, 1fr);
         gap: var(--space-16);
     }
 
-    /* --- 5. HIDE DESKTOP FOOTER --- */
-    .footer-container {
-        display: none;
+    /* --- 5. MOVIE BOOKING FLOW - DARK THEME --- */
+    
+    /* Step 1: Showtimes View */
+    .movie-showtimes-page, .now-showing-section {
+        background-color: transparent;
+        padding-left: var(--space-16);
+        padding-right: var(--space-16);
+    }
+    .now-showing-section h2 { color: var(--color-grey-200); }
+    .movie-details-header { flex-direction: column; align-items: center; text-align: center; }
+    .details-movie-info h1 { color: var(--color-brand-pure-white); }
+    .details-movie-info p { color: var(--color-grey-300); }
+    .details-movie-info .btn-outline { border-color: var(--color-grey-500); color: var(--color-grey-200); }
+    .date-item {
+        background-color: var(--color-grey-800);
+        border-color: var(--color-grey-700);
+        color: var(--color-grey-200);
+    }
+    .date-item.active {
+        background-color: var(--color-brand-pure-white);
+        color: var(--color-grey-900);
+        border-color: var(--color-brand-pure-white);
+    }
+    .date-item.active .date-day-name, .date-item.active .date-month { color: var(--color-grey-800); }
+    .filter-btn {
+        background-color: var(--color-grey-800);
+        border-color: var(--color-grey-600);
+        color: var(--color-grey-100);
+    }
+    .availability-legend { color: var(--color-grey-300); justify-content: center; }
+    .cinema-listing { border-top-color: var(--color-grey-700); }
+    .cinema-info h4 { color: var(--color-brand-pure-white); }
+    .cinema-meta { color: var(--color-grey-400); }
+    .showtime-slot-btn {
+        background-color: transparent;
+        border: 1px solid var(--color-grey-600);
+        color: var(--color-grey-100);
+    }
+    .showtime-slot-btn:hover { border-color: var(--color-green-500); }
+    .showtime-screen { color: var(--color-grey-400); }
+
+    /* Step 2: Seat Selection View */
+    .seat-selection-page { background-color: transparent; }
+    .seat-selection-header { border-bottom-color: var(--color-grey-700); flex-direction: column; align-items: flex-start; gap: var(--space-8); }
+    .seat-selection-header h3, .seat-selection-header p { color: var(--color-grey-100); }
+    .ticket-count-selector select { background-color: var(--color-grey-800); color: var(--color-grey-100); border-color: var(--color-grey-600); }
+    .seat-category-price, .row-identifier, .screen-indicator-text { color: var(--color-grey-300); }
+    .seat {
+        background-color: var(--color-grey-700);
+        border-color: var(--color-grey-600);
+        color: var(--color-grey-300);
+        width: 28px; height: 28px;
+    }
+    .seat.selected {
+        background-color: var(--color-brand-district-purple);
+        border-color: var(--color-brand-district-purple);
+        color: var(--color-brand-pure-white);
+    }
+    .seat.booked {
+        background-color: var(--color-grey-500);
+        border-color: var(--color-grey-500);
+    }
+    .seat-legend.modern .legend-item { color: var(--color-grey-300); }
+    .seat-indicator { border-color: var(--color-grey-500); }
+    .seat-indicator.available { background-color: var(--color-grey-700); }
+    .seat-indicator.occupied { background-color: var(--color-grey-500); }
+    .seat-indicator.selected { background-color: var(--color-brand-district-purple); }
+    .btn-primary-seat { background-color: var(--color-brand-district-purple); }
+    .btn-primary-seat:disabled { background-color: var(--color-grey-600); color: var(--color-grey-400); }
+
+    /* Step 3: Booking Summary View */
+    .booking-summary-page { background-color: transparent; }
+    .summary-content-wrapper { flex-direction: column; background-color: var(--color-grey-800); padding: var(--space-16); }
+    .payment-summary-column { padding: 0; }
+    .summary-header h3, .summary-movie-card h4, .total-ticket-price, .payment-summary-column h4, .to-be-paid span {
+        color: var(--color-brand-pure-white);
+    }
+    .summary-movie-card p, .summary-show-info p, .payment-line-item span:first-child {
+        color: var(--color-grey-300);
+    }
+    .payment-line-item span:last-child { color: var(--color-grey-100); }
+    .summary-show-info { border-color: var(--color-grey-700); }
+    .cancellation-info { background-color: rgba(212, 194, 42, 0.1); color: var(--color-yellow-500); }
+    .offers-section h4, .food-beverages-section h4 { color: var(--color-brand-pure-white); }
+    .payment-summary-column hr { border-top-color: var(--color-grey-700); }
+    .final-payment-action {
+        background-color: var(--color-grey-800);
+        border-top: 1px solid var(--color-grey-700);
+        margin: 0 -16px; /* Extend to edges */
+        padding: var(--space-12) var(--space-16);
+        border-radius: 0;
     }
 }
