@@ -367,7 +367,7 @@ body {
     }
     .logo img {
         height: 28px;
-        filter: brightness(0) (1); /* Make logo white */
+        filter: brightness(0) invert(1); /* Make logo white */
         margin-right: 0;
     }
     .location {
